@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">Chess</string>
+    <string name="main_title">CHESS</string>
+    <string name="board_background_description">board_background</string>
+    <string name="chess_board_space_description">chess_board_space</string>
+    <string name="select_piece">Select a piece to move</string>
+    <string name="select_destination">Select a destination</string>
+    <string name="select_promotion">Select a piece to promote</string>
+    <string name="reset_button">RESET</string>
+    <string name="white">White: </string>
+    <string name="black">Black: </string>
+    <string name="title_activity_two_player_chess">twoPlayerChess</string>
+    <string name="play">PLAY</string>
+    <string name="green_board">green_board</string>
+    <string name="undo">undo</string>
+    <string name="redo">redo</string>
+
+    //board numbers
+    <string name="boardNumber8">8</string>
+    <string name="boardNumber7">7</string>
+    <string name="boardNumber6">6</string>
+    <string name="boardNumber5">5</string>
+    <string name="boardNumber4">4</string>
+    <string name="boardNumber3">3</string>
+    <string name="boardNumber2">2</string>
+    <string name="boardNumber1">1</string>
+
+       //board letters
+    <string name="boardLetterA">a</string>
+    <string name="boardLetterB">b</string>
+    <string name="boardLetterC">c</string>
+    <string name="boardLetterD">d</string>
+    <string name="boardLetterE">e</string>
+    <string name="boardLetterF">f</string>
+    <string name="boardLetterG">g</string>
+    <string name="boardLetterH">h</string>
+    <string name="title_activity_menu">MenuActivity</string>
+
+    </resources>

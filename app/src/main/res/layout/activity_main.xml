@@ -1,0 +1,2502 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/un"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/main_title"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/board_background"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_weight="0"
+        android:contentDescription="@string/board_background_description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/board_border" />
+
+    <LinearLayout
+        android:id="@+id/numbers"
+        android:layout_width="18dp"
+        android:layout_height="360dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/board_background"
+        app:layout_constraintEnd_toEndOf="@+id/board_background"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/board_background"
+        app:layout_constraintTop_toTopOf="@+id/board_background">
+
+        <TextView
+            android:id="@+id/num8"
+            android:layout_width="18dp"
+            android:layout_height="45dp"
+            android:gravity="bottom|end"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:text="@string/boardNumber8"
+            android:textColor="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/num7"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:gravity="bottom|end"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:text="@string/boardNumber7"
+            android:textColor="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/num6"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:gravity="bottom|end"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:text="@string/boardNumber6"
+            android:textColor="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/num5"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:gravity="bottom|end"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:text="@string/boardNumber4"
+            android:textColor="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/num4"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:gravity="bottom|end"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:text="@string/boardNumber5"
+            android:textColor="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/num3"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:gravity="bottom|end"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:text="@string/boardNumber3"
+            android:textColor="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/num2"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:gravity="bottom|end"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:text="@string/boardNumber2"
+            android:textColor="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/num1"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:gravity="bottom|end"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:text="@string/boardNumber1"
+            android:textColor="@android:color/darker_gray" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/alphabets"
+        android:layout_width="360dp"
+        android:layout_height="22dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/board_background"
+        app:layout_constraintEnd_toEndOf="@+id/board_background"
+        app:layout_constraintStart_toStartOf="@+id/board_background"
+        app:layout_constraintTop_toTopOf="@+id/board_background"
+        app:layout_constraintVertical_bias="1.0">
+
+        <TextView
+            android:id="@+id/alpA"
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:text="@string/boardLetterA"
+            android:textColor="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/alpB"
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:text="@string/boardLetterB"
+            android:textColor="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/alpC"
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:text="@string/boardLetterC"
+            android:textColor="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/alpD"
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:text="@string/boardLetterD"
+            android:textColor="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/alpE"
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:text="@string/boardLetterE"
+            android:textColor="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/alpF"
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:text="@string/boardLetterF"
+            android:textColor="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/alpG"
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:text="@string/boardLetterG"
+            android:textColor="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/alpH"
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:text="@string/boardLetterH"
+            android:textColor="@android:color/darker_gray" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/green_board"
+        android:layout_width="360dp"
+        android:layout_height="360dp"
+        android:contentDescription="@string/green_board"
+        app:layout_constraintBottom_toBottomOf="@+id/board_background"
+        app:layout_constraintEnd_toEndOf="@+id/board_background"
+        app:layout_constraintStart_toStartOf="@+id/numbers"
+        app:layout_constraintTop_toTopOf="@+id/board_background"
+        app:srcCompat="@drawable/board" />
+
+    <LinearLayout
+        android:id="@+id/board"
+        android:layout_width="360dp"
+        android:layout_height="360dp"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/row8"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/a8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/white_board"
+                tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
+
+            <ImageView
+                android:id="@+id/b8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/black_board"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/c8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/white_board"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/d8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/black_board"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/e8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/white_board"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/f8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/black_board"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/g8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/white_board"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/h8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/black_board"
+                tools:ignore="ImageContrastCheck,TouchTargetSizeCheck" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/row7"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/a7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/board_background_description"
+                app:srcCompat="@drawable/black_board"
+                tools:ignore="ImageContrastCheck,TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
+
+            <ImageView
+                android:id="@+id/b7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/board_background_description"
+                app:srcCompat="@drawable/white_board"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/c7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/board_background_description"
+                app:srcCompat="@drawable/black_board"
+                tools:ignore="ImageContrastCheck,TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/d7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/board_background_description"
+                app:srcCompat="@drawable/white_board"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/e7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/board_background_description"
+                app:srcCompat="@drawable/black_board"
+                tools:ignore="ImageContrastCheck,TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/f7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/board_background_description"
+                app:srcCompat="@drawable/white_board"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/g7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/board_background_description"
+                app:srcCompat="@drawable/black_board"
+                tools:ignore="ImageContrastCheck,TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/h7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/board_background_description"
+                app:srcCompat="@drawable/white_board" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/row6"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/a6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/board_background_description"
+                app:srcCompat="@drawable/white_board"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/b6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/board_background_description"
+                app:srcCompat="@drawable/black_board"
+                tools:ignore="ImageContrastCheck,TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/c6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/board_background_description"
+                app:srcCompat="@drawable/white_board"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/d6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/board_background_description"
+                app:srcCompat="@drawable/black_board"
+                tools:ignore="ImageContrastCheck,TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/e6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/board_background_description"
+                app:srcCompat="@drawable/white_board"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/f6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/board_background_description"
+                app:srcCompat="@drawable/black_board"
+                tools:ignore="ImageContrastCheck,TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/g6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/board_background_description"
+                app:srcCompat="@drawable/white_board" />
+
+            <ImageView
+                android:id="@+id/h6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/board_background_description"
+                app:srcCompat="@drawable/black_board"
+                tools:ignore="ImageContrastCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/row5"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/a5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/black_board"
+                tools:ignore="ImageContrastCheck,TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/b5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/white_board"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/c5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/black_board"
+                tools:ignore="ImageContrastCheck,TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/d5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/white_board"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/e5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/black_board"
+                tools:ignore="ImageContrastCheck,TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/f5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/white_board"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/g5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/black_board"
+                tools:ignore="ImageContrastCheck,TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/h5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/white_board"
+                tools:ignore="TouchTargetSizeCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/row4"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/a4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/white_board"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/b4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/black_board"
+                tools:ignore="ImageContrastCheck,TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/c4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/white_board"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/d4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/black_board"
+                tools:ignore="ImageContrastCheck,TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/e4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/white_board"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/f4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/black_board"
+                tools:ignore="ImageContrastCheck,TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/g4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/white_board"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/h4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/black_board"
+                tools:ignore="ImageContrastCheck,TouchTargetSizeCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/row3"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/a3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/black_board"
+                tools:ignore="ImageContrastCheck,ImageContrastCheck,TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/b3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/board_background_description"
+                app:srcCompat="@drawable/white_board"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/c3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/board_background_description"
+                app:srcCompat="@drawable/black_board"
+                tools:ignore="ImageContrastCheck,TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/d3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/board_background_description"
+                app:srcCompat="@drawable/white_board"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/e3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/board_background_description"
+                app:srcCompat="@drawable/black_board"
+                tools:ignore="ImageContrastCheck,TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/f3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/board_background_description"
+                app:srcCompat="@drawable/white_board"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/g3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/board_background_description"
+                app:srcCompat="@drawable/black_board"
+                tools:ignore="ImageContrastCheck,TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/h3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/board_background_description"
+                app:srcCompat="@drawable/white_board" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/row2"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/a2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/white_board" />
+
+            <ImageView
+                android:id="@+id/b2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/black_board"
+                tools:ignore="ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/c2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/white_board"
+                tools:ignore="TooManyViews" />
+
+            <ImageView
+                android:id="@+id/d2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/black_board"
+                tools:ignore="ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/e2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/white_board"
+                tools:ignore="ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/f2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/black_board"
+                tools:ignore="ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/g2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/white_board" />
+
+            <ImageView
+                android:id="@+id/h2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/black_board"
+                tools:ignore="ImageContrastCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/row1"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/a1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/black_board"
+                tools:ignore="ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/b1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/white_board"
+                tools:ignore="ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/c1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/black_board"
+                tools:ignore="ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/d1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/white_board"
+                tools:ignore="ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/e1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/black_board"
+                tools:ignore="ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/f1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/white_board" />
+
+            <ImageView
+                android:id="@+id/g1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/black_board"
+                tools:ignore="ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/h1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                app:srcCompat="@drawable/white_board" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/pieces"
+        android:layout_width="360dp"
+        android:layout_height="360dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/row8p"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/a8p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="a8"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
+
+            <ImageView
+                android:id="@+id/b8p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="b8"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TooManyViews,TouchTargetSizeCheck,ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/c8p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="c8"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/d8p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="d8"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/e8p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="e8"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/f8p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="f8"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/g8p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="g8"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/h8p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="h8"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/row7p"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:contentDescription="@string/chess_board_space_description"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/a7p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="a7"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="ImageContrastCheck,TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/b7p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="b7"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/c7p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="c7"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/d7p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="d7"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/e7p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="e7"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/f7p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="f7"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/g7p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="g7"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/h7p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="h7"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/row6p"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/a6p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="a6"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/b6p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="b6"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/c6p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="c6"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/d6p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="d6"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/e6p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="e6"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/f6p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="f6"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/g6p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="g6"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/h6p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="h6"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/row5p"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/a5p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="a5"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="ImageContrastCheck,TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/b5p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="b5"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/c5p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="c5"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/d5p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="d5"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/e5p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="e5"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/f5p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="f5"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/g5p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="g5"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/h5p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="h5"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/row4p"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:contentDescription="@string/chess_board_space_description"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/a4p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="a4"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/b4p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="b4"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/c4p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="c4"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/d4p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="d4"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/e4p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="e4"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/f4p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="f4"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/g4p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="g4"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/h4p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="h4"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/row3p"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/a3p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="a3"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="ImageContrastCheck,TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/b3p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="b3"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/c3p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="c3"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/d3p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="d3"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/e3p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="e3"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/f3p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="f3"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/g3p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="g3"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/h3p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="h3"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/row2p"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/a2p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="a2"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/b2p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="b2"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/c2p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="c2"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/d2p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="d2"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/e2p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="e2"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/f2p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="f2"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/g2p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="g2"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/h2p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="h2"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/row1p"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/a1p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="a1"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="ImageContrastCheck,TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/b1p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="b1"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/c1p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="c1"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/d1p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="d1"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/e1p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="e1"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/f1p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="f1"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/g1p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="g1"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/h1p"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:onClick="click"
+                android:tag="h1"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/position"
+        android:layout_width="360dp"
+        android:layout_height="360dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/row8pos"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/a8pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="a8"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
+
+            <ImageView
+                android:id="@+id/b8pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="b8"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TooManyViews,TouchTargetSizeCheck,ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/c8pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="c8"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/d8pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="d8"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/e8pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="e8"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/f8pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="f8"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/g8pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="g8"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/h8pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="h8"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/row7pos"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:contentDescription="@string/chess_board_space_description"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/a7pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="a7"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="ImageContrastCheck,TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/b7pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="b7"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/c7pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="c7"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/d7pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="d7"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/e7pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="e7"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/f7pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="f7"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/g7pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="g7"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/h7pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="h7"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/row6pos"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/a6pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="a6"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/b6pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="b6"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/c6pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="c6"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/d6pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="d6"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/e6pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="e6"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/f6pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="f6"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/g6pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="g6"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/h6pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="h6"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/row5pos"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/a5pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="a5"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="ImageContrastCheck,TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/b5pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="b5"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/c5pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="c5"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/d5pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="d5"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/e5pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="e5"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/f5pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="f5"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/g5pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="g5"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/h5pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="h5"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/row4pos"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:contentDescription="@string/chess_board_space_description"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/a4pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="a4"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/b4pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="b4"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/c4pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="c4"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/d4pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="d4"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/e4pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="e4"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/f4pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="f4"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/g4pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="g4"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/h4pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="h4"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/row3pos"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/a3pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="a3"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="ImageContrastCheck,TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/b3pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="b3"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/c3pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="c3"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/d3pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="d3"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/e3pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="e3"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/f3pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="f3"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/g3pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="g3"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/h3pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="h3"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/row2pos"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/a2pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="a2"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/b2pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="b2"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/c2pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="c2"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/d2pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="d2"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/e2pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="e2"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/f2pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="f2"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/g2pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="g2"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/h2pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="h2"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/row1pos"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/a1pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="a1"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="ImageContrastCheck,TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/b1pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="b1"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/c1pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="c1"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/d1pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="d1"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/e1pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="e1"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/f1pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="f1"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/g1pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="g1"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/h1pos"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/chess_board_space_description"
+                android:tag="h1"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="TouchTargetSizeCheck" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/navbar"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/board_background">
+
+        <ImageView
+            android:id="@+id/undoall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="undo_all"
+            app:srcCompat="@drawable/undoall"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <ImageView
+            android:id="@+id/undo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="undo"
+            app:srcCompat="@drawable/undo"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <ImageView
+            android:id="@+id/reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="reset_board"
+            app:srcCompat="@drawable/reset"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <ImageView
+            android:id="@+id/redo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="redo"
+            app:srcCompat="@drawable/redo"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <ImageView
+            android:id="@+id/redoall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="redo_all"
+            app:srcCompat="@drawable/redoall"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/show_selected_piece_background"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:contentDescription="@string/chess_board_space_description"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:srcCompat="@drawable/selected_piece_bg"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/show_selected_piece"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:contentDescription="@string/chess_board_space_description"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:srcCompat="@drawable/blank"
+        tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/show_selected_piece" />
+
+    <FrameLayout
+        android:id="@+id/promotion_palette"
+        android:layout_width="240dp"
+        android:layout_height="60dp"
+        android:background="@drawable/promo_popup"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/board_background"
+        app:layout_constraintEnd_toEndOf="@+id/board_background"
+        app:layout_constraintStart_toStartOf="@+id/board_background"
+        app:layout_constraintTop_toTopOf="@+id/board_background">
+
+        <LinearLayout
+            android:layout_width="225dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/queen_promotion"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:onClick="Promotion_Palette"
+                android:tag="queen"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/rook_promotion"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:onClick="Promotion_Palette"
+                android:tag="rook"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/bishop_promotion"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:onClick="Promotion_Palette"
+                android:tag="bishop"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/knight_promotion"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:onClick="Promotion_Palette"
+                android:tag="knight"
+                app:srcCompat="@drawable/blank"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+        </LinearLayout>
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
