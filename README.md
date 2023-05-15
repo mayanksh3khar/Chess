@@ -19,8 +19,6 @@ En Passant
 
 Castling
 
-Promotion
-
 Check Alert/Restrict
 
 Checkmate

@@ -42,10 +42,24 @@ public class MainActivity extends AppCompatActivity {
     int promotion_apos,promotion_npos;
 
 
+    //Castling
+    boolean white_king_moved=false;
+    int white_king_move_no=-1;
+    boolean black_king_moved=false;
+    int black_king_move_no=-1;
+    boolean white_rook1_moved=false;
+    int white_rook1_move_no=-1;
+    boolean white_rook2_moved=false;
+    int white_rook2_move_no=-1;
+    boolean black_rook1_moved=false;
+    int black_rook1_move_no=-1;
+    boolean black_rook2_moved=false;
+    int black_rook2_move_no=-1;
 
 
-    //TODO:Declare variables for En Passant, Castling(Doing), Check Alert/Restrict, Checkmate, Draw by (Stalemate, 50/75 Move Rule, 3 Fold Repetition, Insufficient Material)
-    //int noValidMoves=0;
+
+    //TODO:Declare variables for En Passant, Check Alert/Restrict, Checkmate, Draw by (Stalemate, 50/75 Move Rule, 3 Fold Repetition, Insufficient Material)
+
 
 
 
@@ -55,10 +69,6 @@ public class MainActivity extends AppCompatActivity {
     //This runs on Click
     @SuppressLint("SetTextI18n")
     public void click(View view) {
-
-
-
-
 
         //Declarations
         ImageView img= (ImageView)view;
@@ -172,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
-            if(places[npos][apos]!=2 && places[npos][apos]!=3 && places[npos][apos]!=4)
+            if(places[npos][apos]!=2 && places[npos][apos]!=3 && places[npos][apos]!=4 && places[npos][apos]!=5)
             {
                 return;
             }
@@ -202,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
 
                 //Storing move
                 storeBoard(++move_no);
-                max_move_no=move_no;
+                max_move_no = move_no;
 
 
                 //Player's turn
@@ -234,6 +244,43 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
+            //Castling
+            if(places[npos][apos]==5) {
+                //Resetting places
+                reset_places();
+
+                //Moving piece
+                pieces[npos][apos] = selected_piece;
+                pieces[init_npos][init_apos] = '-';
+
+                //Castling
+                {
+                    if (selected_piece == 'k') {
+                        if (apos == 6) {
+                            pieces[0][5] = 'r';
+                            pieces[0][7] = '-';
+                        } else if (apos == 2) {
+                            pieces[0][3] = 'r';
+                            pieces[0][0] = '-';
+                        }
+                    }
+                    if (selected_piece == 'K') {
+                        if (apos == 6) {
+                            pieces[7][5] = 'R';
+                            pieces[7][7] = '-';
+                        } else if (apos == 2) {
+                            pieces[7][3] = 'R';
+                            pieces[7][0] = '-';
+                        }
+                    }
+                }
+
+                //Finally
+                show_piece.setImageResource(R.drawable.blank);
+                draw_board();
+                piece_selected = false;
+            }
+
 
             //Resetting places
             reset_places();
@@ -242,6 +289,37 @@ public class MainActivity extends AppCompatActivity {
             pieces[npos][apos]=selected_piece;
             pieces[init_npos][init_apos]='-';
 
+
+            //Castling
+
+            {
+                if (selected_piece == 'k') {
+                    white_king_moved = true;
+                    white_king_move_no= move_no;
+                }
+                if (selected_piece == 'K') {
+                    black_king_moved = true;
+                    black_king_move_no= move_no;
+                }
+                if (selected_piece == 'r' && init_npos == 0 && init_apos == 0) {
+                    white_rook1_moved = true;
+                    white_rook1_move_no= move_no;
+                }
+                if (selected_piece == 'r' && init_npos == 0 && init_apos == 7) {
+                    white_rook2_moved = true;
+                    white_rook2_move_no= move_no;
+                }
+                if (selected_piece == 'R' && init_npos == 7 && init_apos == 0) {
+                    black_rook1_moved = true;
+                    black_rook1_move_no= move_no;
+                }
+                if (selected_piece == 'R' && init_npos == 7 && init_apos == 7) {
+                    black_rook2_moved = true;
+                    black_rook2_move_no= move_no;
+                }
+                Log.d("rook2",white_rook2_moved+"");
+            }
+
             //Finally
             show_piece.setImageResource(R.drawable.blank);
             draw_board();
@@ -249,8 +327,7 @@ public class MainActivity extends AppCompatActivity {
 
             //Storing move
             storeBoard(++move_no);
-            max_move_no=move_no;
-
+            max_move_no = move_no;
             //Player's turn
             String piece_name = pieces[npos][apos]+"";
             if(white_turn && piece_name.charAt(0)>'a' && piece_name.charAt(0)<'z')
@@ -644,6 +721,12 @@ public class MainActivity extends AppCompatActivity {
                 places[npos - 1][apos - 1] = 3;
         }
 
+        //Castling
+        if(npos==0 && apos==4 && pieces[0][5]=='-' && pieces[0][6]=='-' && pieces[0][0]=='r' && !white_king_moved && !white_rook2_moved)
+            places[0][6]=5;
+        if(npos==0 && apos==4 && pieces[0][3]=='-' && pieces[0][2]=='-' && pieces[0][1]=='-' && pieces[0][0]=='r' && !white_king_moved && !white_rook1_moved)
+            places[0][2]=5;
+
         draw_board();
     }
 
@@ -690,6 +773,12 @@ public class MainActivity extends AppCompatActivity {
             if (pieces[npos - 1][apos - 1] > 'a' && pieces[npos - 1][apos - 1] < 'z')
                 places[npos - 1][apos - 1] = 3;
         }
+
+        //Castling
+        if(npos==7 && apos==4 && pieces[7][5]=='-' && pieces[7][6]=='-' && pieces[7][7]=='R' && !black_king_moved && !black_rook2_moved)
+            places[7][6]=5;
+        if(npos==7 && apos==4 && pieces[7][3]=='-' && pieces[7][2]=='-' && pieces[7][1]=='-' && pieces[7][0]=='R' && !black_king_moved && !black_rook1_moved)
+            places[7][2]=5;
 
         draw_board();
     }
@@ -809,7 +898,7 @@ public class MainActivity extends AppCompatActivity {
         TextView hint =findViewById(R.id.hint);
 
         if(white_turn) {
-            hint.setText(getString(R.string.black)+" "+getString(R.string.select_piece));
+            hint.setText(getString(R.string.white)+" "+getString(R.string.select_piece));
             switch (piece_name) {
                 case "queen":
                     pieces[promotion_npos][promotion_apos] = 'Q';
@@ -824,9 +913,11 @@ public class MainActivity extends AppCompatActivity {
                     pieces[promotion_npos][promotion_apos] = 'N';
                     break;
             }
+            storeBoard(move_no);
         }
 
         else {
+            hint.setText(getString(R.string.black)+" "+getString(R.string.select_piece));
             switch (piece_name) {
                 case "queen":
                     pieces[promotion_npos][promotion_apos] = 'q';
@@ -841,6 +932,7 @@ public class MainActivity extends AppCompatActivity {
                     pieces[promotion_npos][promotion_apos] = 'n';
                     break;
             }
+            storeBoard(move_no);
         }
 
         draw_board();
@@ -928,13 +1020,15 @@ public class MainActivity extends AppCompatActivity {
     {
         if (toSet==1)
             return R.drawable.highlighted_selected_piece_fg;
-        else if(toSet==2)
+        else if(toSet==2) //Normal Move
             return R.drawable.indicator;
-        else if(toSet==3)
+        else if(toSet==3) //Attack Move
             return R.drawable.indicator2;
-        else if (toSet==4) {
+        else if(toSet==4) //Pawn Promotion
             return R.drawable.indicator3;
-        } else
+        else if(toSet==5) //Castling
+            return R.drawable.indicator4;
+        else
             return R.drawable.blank;
     }
 
@@ -988,42 +1082,26 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     public void undo(View view)
     {
-        if(move_no>0)
-        {
-            move_no--;
-            for(int i=0;i<8;i++)
-                System.arraycopy(boardHistory[move_no][i], 0, pieces[i], 0, 8);
-            draw_board();
-            if(piece_selected)
+        if (move_no > 0 && !is_promotion) {
             {
-
-                ImageView show_piece = findViewById(R.id.show_selected_piece);
-                show_piece.setImageResource(R.drawable.blank);
-                piece_selected = false;
-                selected_piece = '-';
-                reset_places();
+                if(move_no-1==white_king_move_no)
+                    white_king_moved= false;
+                if(move_no-1==black_king_move_no)
+                    black_king_moved= false;
+                if(move_no-1==white_rook1_move_no)
+                    white_rook1_moved= false;
+                if(move_no-1==white_rook2_move_no)
+                    white_rook2_moved= false;
+                if(move_no-1==black_rook1_move_no)
+                    black_rook1_moved= false;
+                if(move_no-1==black_rook2_move_no)
+                    black_rook2_moved= false;
             }
-            white_turn = !white_turn;TextView hint = findViewById(R.id.hint);
-            if(white_turn)
-                hint.setText(getString(R.string.white)+" "+getString(R.string.select_piece));
-            else
-                hint.setText(getString(R.string.black)+" "+getString(R.string.select_piece));
-            debug(move_no);
-        }
-    }
-
-    //Redo
-    @SuppressLint("SetTextI18n")
-    public void redo(View view)
-    {
-        if(move_no<max_move_no)
-        {
-            move_no++;
-            for(int i=0;i<8;i++)
+            move_no--;
+            for (int i = 0; i < 8; i++)
                 System.arraycopy(boardHistory[move_no][i], 0, pieces[i], 0, 8);
             draw_board();
-            if(piece_selected)
-            {
+            if (piece_selected) {
 
                 ImageView show_piece = findViewById(R.id.show_selected_piece);
                 show_piece.setImageResource(R.drawable.blank);
@@ -1033,28 +1111,71 @@ public class MainActivity extends AppCompatActivity {
             }
             white_turn = !white_turn;
             TextView hint = findViewById(R.id.hint);
-            if(white_turn)
-                hint.setText(getString(R.string.white)+" "+getString(R.string.select_piece));
+            if (white_turn)
+                hint.setText(getString(R.string.white) + " " + getString(R.string.select_piece));
             else
-                hint.setText(getString(R.string.black)+" "+getString(R.string.select_piece));
+                hint.setText(getString(R.string.black) + " " + getString(R.string.select_piece));
+            debug(move_no);
+        }
+    }
+
+    //Redo
+    @SuppressLint("SetTextI18n")
+    public void redo(View view)
+    {
+        if (move_no < max_move_no && !is_promotion) {
+            {
+                if(move_no+1==white_king_move_no)
+                    white_king_moved= true;
+                if(move_no+1==black_king_move_no)
+                    black_king_moved= true;
+                if(move_no+1==white_rook1_move_no)
+                    white_rook1_moved= true;
+                if(move_no+1==white_rook2_move_no)
+                    white_rook2_moved= true;
+                if(move_no+1==black_rook1_move_no)
+                    black_rook1_moved= true;
+                if(move_no+1==black_rook2_move_no)
+                    black_rook2_moved= true;
+            }
+            move_no++;
+            for (int i = 0; i < 8; i++)
+                System.arraycopy(boardHistory[move_no][i], 0, pieces[i], 0, 8);
+            draw_board();
+            if (piece_selected) {
+
+                ImageView show_piece = findViewById(R.id.show_selected_piece);
+                show_piece.setImageResource(R.drawable.blank);
+                piece_selected = false;
+                selected_piece = '-';
+                reset_places();
+            }
+            white_turn = !white_turn;
+            TextView hint = findViewById(R.id.hint);
+            if (white_turn)
+                hint.setText(getString(R.string.white) + " " + getString(R.string.select_piece));
+            else
+                hint.setText(getString(R.string.black) + " " + getString(R.string.select_piece));
             debug(move_no);
         }
     }
     //Undo All
     public void undo_all(View view)
     {
-        while(move_no>0)
-        {
-            undo(view);
+        if(!is_promotion) {
+            while (move_no > 0) {
+                undo(view);
+            }
         }
     }
 
     //Redo All
     public void redo_all(View view)
     {
-        while(move_no<max_move_no)
-        {
-            redo(view);
+        if(!is_promotion) {
+            while (move_no < max_move_no) {
+                redo(view);
+            }
         }
     }
 
@@ -1101,7 +1222,22 @@ public class MainActivity extends AppCompatActivity {
         piece_selected = false;
         move_no =0;
         max_move_no=0;
-        
+
+
+        //Resetting castling
+        white_king_moved=false;
+        white_king_move_no=-1;
+        black_king_moved=false;
+        black_king_move_no=-1;
+        white_rook1_moved=false;
+        white_rook1_move_no=-1;
+        white_rook2_moved=false;
+        white_rook2_move_no=-1;
+        black_rook1_moved=false;
+        black_rook1_move_no=-1;
+        black_rook2_moved=false;
+        black_rook2_move_no=-1;
+
         //Drawing the board
         draw_board();
     }
@@ -1134,5 +1270,17 @@ public class MainActivity extends AppCompatActivity {
         hint.setText(getString(R.string.white)+" "+getString(R.string.select_piece));
         storeBoard(0);
         move_no=0;
+        white_king_moved=false;
+        white_king_move_no=-1;
+        black_king_moved=false;
+        black_king_move_no=-1;
+        white_rook1_moved=false;
+        white_rook1_move_no=-1;
+        white_rook2_moved=false;
+        white_rook2_move_no=-1;
+        black_rook1_moved=false;
+        black_rook1_move_no=-1;
+        black_rook2_moved=false;
+        black_rook2_move_no=-1;
     }
 }
