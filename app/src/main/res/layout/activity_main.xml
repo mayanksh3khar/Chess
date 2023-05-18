@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/un"
+    android:id="@+id/chessboard"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
@@ -30,7 +30,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/board_border" />
+        app:srcCompat="@drawable/board_border"
+        tools:ignore="ImageContrastCheck" />
 
     <LinearLayout
         android:id="@+id/numbers"
@@ -80,7 +81,7 @@
             android:gravity="bottom|end"
             android:paddingTop="4dp"
             android:paddingBottom="4dp"
-            android:text="@string/boardNumber4"
+            android:text="@string/boardNumber5"
             android:textColor="@android:color/darker_gray" />
 
         <TextView
@@ -90,7 +91,7 @@
             android:gravity="bottom|end"
             android:paddingTop="4dp"
             android:paddingBottom="4dp"
-            android:text="@string/boardNumber5"
+            android:text="@string/boardNumber4"
             android:textColor="@android:color/darker_gray" />
 
         <TextView
@@ -144,7 +145,8 @@
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
             android:text="@string/boardLetterA"
-            android:textColor="@android:color/darker_gray" />
+            android:textColor="@android:color/darker_gray"
+            tools:ignore="TextContrastCheck" />
 
         <TextView
             android:id="@+id/alpB"
@@ -164,7 +166,8 @@
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
             android:text="@string/boardLetterC"
-            android:textColor="@android:color/darker_gray" />
+            android:textColor="@android:color/darker_gray"
+            tools:ignore="TextContrastCheck" />
 
         <TextView
             android:id="@+id/alpD"
@@ -184,7 +187,8 @@
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
             android:text="@string/boardLetterE"
-            android:textColor="@android:color/darker_gray" />
+            android:textColor="@android:color/darker_gray"
+            tools:ignore="TextContrastCheck" />
 
         <TextView
             android:id="@+id/alpF"
@@ -218,7 +222,7 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/green_board"
+        android:id="@+id/board_picture"
         android:layout_width="360dp"
         android:layout_height="360dp"
         android:contentDescription="@string/green_board"
@@ -226,7 +230,8 @@
         app:layout_constraintEnd_toEndOf="@+id/board_background"
         app:layout_constraintStart_toStartOf="@+id/numbers"
         app:layout_constraintTop_toTopOf="@+id/board_background"
-        app:srcCompat="@drawable/board" />
+        app:srcCompat="@drawable/board"
+        tools:ignore="ImageContrastCheck" />
 
     <LinearLayout
         android:id="@+id/board"
@@ -732,7 +737,7 @@
                 android:layout_weight="1"
                 android:contentDescription="@string/chess_board_space_description"
                 app:srcCompat="@drawable/black_board"
-                tools:ignore="ImageContrastCheck" />
+                tools:ignore="ImageContrastCheck,TooManyViews" />
 
             <ImageView
                 android:id="@+id/c2"
@@ -892,7 +897,7 @@
                 android:onClick="click"
                 android:tag="a8"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
+                tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/b8p"
@@ -914,7 +919,7 @@
                 android:onClick="click"
                 android:tag="c8"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/d8p"
@@ -936,7 +941,7 @@
                 android:onClick="click"
                 android:tag="e8"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/f8p"
@@ -947,7 +952,7 @@
                 android:onClick="click"
                 android:tag="f8"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/g8p"
@@ -958,7 +963,7 @@
                 android:onClick="click"
                 android:tag="g8"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/h8p"
@@ -1000,7 +1005,7 @@
                 android:onClick="click"
                 android:tag="b7"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/c7p"
@@ -1022,7 +1027,7 @@
                 android:onClick="click"
                 android:tag="d7"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/e7p"
@@ -1044,7 +1049,7 @@
                 android:onClick="click"
                 android:tag="f7"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/g7p"
@@ -1055,7 +1060,7 @@
                 android:onClick="click"
                 android:tag="g7"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/h7p"
@@ -1066,7 +1071,7 @@
                 android:onClick="click"
                 android:tag="h7"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
         </LinearLayout>
 
         <LinearLayout
@@ -1084,7 +1089,7 @@
                 android:onClick="click"
                 android:tag="a6"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/b6p"
@@ -1095,7 +1100,7 @@
                 android:onClick="click"
                 android:tag="b6"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/c6p"
@@ -1106,7 +1111,7 @@
                 android:onClick="click"
                 android:tag="c6"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/d6p"
@@ -1117,7 +1122,7 @@
                 android:onClick="click"
                 android:tag="d6"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/e6p"
@@ -1128,7 +1133,7 @@
                 android:onClick="click"
                 android:tag="e6"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/f6p"
@@ -1139,7 +1144,7 @@
                 android:onClick="click"
                 android:tag="f6"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/g6p"
@@ -1150,7 +1155,7 @@
                 android:onClick="click"
                 android:tag="g6"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/h6p"
@@ -1190,7 +1195,7 @@
                 android:onClick="click"
                 android:tag="b5"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/c5p"
@@ -1223,7 +1228,7 @@
                 android:onClick="click"
                 android:tag="e5"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/f5p"
@@ -1234,7 +1239,7 @@
                 android:onClick="click"
                 android:tag="f5"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/g5p"
@@ -1245,7 +1250,7 @@
                 android:onClick="click"
                 android:tag="g5"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/h5p"
@@ -1256,7 +1261,7 @@
                 android:onClick="click"
                 android:tag="h5"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
         </LinearLayout>
 
         <LinearLayout
@@ -1275,7 +1280,7 @@
                 android:onClick="click"
                 android:tag="a4"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/b4p"
@@ -1286,7 +1291,7 @@
                 android:onClick="click"
                 android:tag="b4"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/c4p"
@@ -1297,7 +1302,7 @@
                 android:onClick="click"
                 android:tag="c4"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/d4p"
@@ -1308,7 +1313,7 @@
                 android:onClick="click"
                 android:tag="d4"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/e4p"
@@ -1319,7 +1324,7 @@
                 android:onClick="click"
                 android:tag="e4"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/f4p"
@@ -1330,7 +1335,7 @@
                 android:onClick="click"
                 android:tag="f4"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/g4p"
@@ -1341,7 +1346,7 @@
                 android:onClick="click"
                 android:tag="g4"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/h4p"
@@ -1392,7 +1397,7 @@
                 android:onClick="click"
                 android:tag="c3"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/d3p"
@@ -1403,7 +1408,7 @@
                 android:onClick="click"
                 android:tag="d3"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/e3p"
@@ -1425,7 +1430,7 @@
                 android:onClick="click"
                 android:tag="f3"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/g3p"
@@ -1436,7 +1441,7 @@
                 android:onClick="click"
                 android:tag="g3"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/h3p"
@@ -1447,7 +1452,7 @@
                 android:onClick="click"
                 android:tag="h3"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
         </LinearLayout>
 
         <LinearLayout
@@ -1465,7 +1470,7 @@
                 android:onClick="click"
                 android:tag="a2"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/b2p"
@@ -1476,7 +1481,7 @@
                 android:onClick="click"
                 android:tag="b2"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/c2p"
@@ -1487,7 +1492,7 @@
                 android:onClick="click"
                 android:tag="c2"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/d2p"
@@ -1498,7 +1503,7 @@
                 android:onClick="click"
                 android:tag="d2"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/e2p"
@@ -1509,7 +1514,7 @@
                 android:onClick="click"
                 android:tag="e2"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/f2p"
@@ -1520,7 +1525,7 @@
                 android:onClick="click"
                 android:tag="f2"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/g2p"
@@ -1531,7 +1536,7 @@
                 android:onClick="click"
                 android:tag="g2"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/h2p"
@@ -1582,7 +1587,7 @@
                 android:onClick="click"
                 android:tag="c1"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/d1p"
@@ -1604,7 +1609,7 @@
                 android:onClick="click"
                 android:tag="e1"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/f1p"
@@ -1615,7 +1620,7 @@
                 android:onClick="click"
                 android:tag="f1"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/g1p"
@@ -1626,7 +1631,7 @@
                 android:onClick="click"
                 android:tag="g1"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/h1p"
@@ -1637,7 +1642,7 @@
                 android:onClick="click"
                 android:tag="h1"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
         </LinearLayout>
     </LinearLayout>
 
@@ -1665,7 +1670,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="a8"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
+                tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/b8pos"
@@ -1685,7 +1690,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="c8"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/d8pos"
@@ -1715,7 +1720,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="f8"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/g8pos"
@@ -1725,7 +1730,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="g8"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/h8pos"
@@ -1764,7 +1769,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="b7"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/c7pos"
@@ -1774,7 +1779,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="c7"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/d7pos"
@@ -1784,7 +1789,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="d7"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/e7pos"
@@ -1794,7 +1799,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="e7"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/f7pos"
@@ -1804,7 +1809,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="f7"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/g7pos"
@@ -1824,7 +1829,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="h7"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
         </LinearLayout>
 
         <LinearLayout
@@ -1841,7 +1846,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="a6"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/b6pos"
@@ -1851,7 +1856,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="b6"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/c6pos"
@@ -1861,7 +1866,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="c6"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/d6pos"
@@ -1871,7 +1876,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="d6"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/e6pos"
@@ -1881,7 +1886,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="e6"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/f6pos"
@@ -1891,7 +1896,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="f6"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/g6pos"
@@ -1948,7 +1953,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="c5"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/d5pos"
@@ -1978,7 +1983,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="f5"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/g5pos"
@@ -1988,7 +1993,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="g5"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/h5pos"
@@ -1998,7 +2003,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="h5"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
         </LinearLayout>
 
         <LinearLayout
@@ -2016,7 +2021,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="a4"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/b4pos"
@@ -2036,7 +2041,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="c4"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/d4pos"
@@ -2046,7 +2051,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="d4"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/e4pos"
@@ -2056,7 +2061,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="e4"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/f4pos"
@@ -2066,7 +2071,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="f4"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/g4pos"
@@ -2123,7 +2128,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="c3"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/d3pos"
@@ -2133,7 +2138,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="d3"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/e3pos"
@@ -2143,7 +2148,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="e3"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/f3pos"
@@ -2153,7 +2158,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="f3"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/g3pos"
@@ -2163,7 +2168,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="g3"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/h3pos"
@@ -2173,7 +2178,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="h3"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
         </LinearLayout>
 
         <LinearLayout
@@ -2190,7 +2195,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="a2"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/b2pos"
@@ -2200,7 +2205,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="b2"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/c2pos"
@@ -2210,7 +2215,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="c2"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/d2pos"
@@ -2220,7 +2225,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="d2"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/e2pos"
@@ -2240,7 +2245,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="f2"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/g2pos"
@@ -2250,7 +2255,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="g2"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/h2pos"
@@ -2287,7 +2292,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="b1"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/c1pos"
@@ -2297,7 +2302,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="c1"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/d1pos"
@@ -2307,7 +2312,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="d1"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/e1pos"
@@ -2317,7 +2322,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="e1"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/f1pos"
@@ -2327,7 +2332,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="f1"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck,ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/g1pos"
@@ -2347,7 +2352,7 @@
                 android:contentDescription="@string/chess_board_space_description"
                 android:tag="h1"
                 app:srcCompat="@drawable/blank"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
         </LinearLayout>
     </LinearLayout>
 
@@ -2363,49 +2368,54 @@
         app:layout_constraintTop_toBottomOf="@+id/board_background">
 
         <ImageView
-            android:id="@+id/undoall"
+            android:id="@+id/undo_all"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:contentDescription="@string/undo_all"
             android:onClick="undo_all"
             app:srcCompat="@drawable/undoall"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,ImageContrastCheck" />
 
         <ImageView
             android:id="@+id/undo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:contentDescription="@string/undo"
             android:onClick="undo"
             app:srcCompat="@drawable/undo"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,ImageContrastCheck" />
 
         <ImageView
             android:id="@+id/reset"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:contentDescription="@string/reset"
             android:onClick="reset_board"
             app:srcCompat="@drawable/reset"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,ImageContrastCheck" />
 
         <ImageView
             android:id="@+id/redo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:contentDescription="@string/redo"
             android:onClick="redo"
             app:srcCompat="@drawable/redo"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,ImageContrastCheck" />
 
         <ImageView
-            android:id="@+id/redoall"
+            android:id="@+id/redo_all"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:contentDescription="@string/redo_all"
             android:onClick="redo_all"
             app:srcCompat="@drawable/redoall"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,ImageContrastCheck" />
     </LinearLayout>
 
     <ImageView
@@ -2413,7 +2423,6 @@
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:contentDescription="@string/chess_board_space_description"
-        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"
@@ -2425,7 +2434,7 @@
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:contentDescription="@string/chess_board_space_description"
-        android:visibility="invisible"
+        android:paddingBottom="3dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"
@@ -2455,13 +2464,15 @@
             android:layout_width="225dp"
             android:layout_height="45dp"
             android:layout_gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
 
             <ImageView
                 android:id="@+id/queen_promotion"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:layout_weight="1"
+                android:contentDescription="@string/promotion_piece_queen"
                 android:onClick="Promotion_Palette"
                 android:tag="queen"
                 app:srcCompat="@drawable/blank"
@@ -2472,6 +2483,7 @@
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:layout_weight="1"
+                android:contentDescription="@string/promotion_piece_rook"
                 android:onClick="Promotion_Palette"
                 android:tag="rook"
                 app:srcCompat="@drawable/blank"
@@ -2482,6 +2494,7 @@
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:layout_weight="1"
+                android:contentDescription="@string/promotion_piece_bishop"
                 android:onClick="Promotion_Palette"
                 android:tag="bishop"
                 app:srcCompat="@drawable/blank"
@@ -2492,6 +2505,7 @@
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:layout_weight="1"
+                android:contentDescription="@string/promotion_piece_knight"
                 android:onClick="Promotion_Palette"
                 android:tag="knight"
                 app:srcCompat="@drawable/blank"

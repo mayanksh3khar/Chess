@@ -6,7 +6,6 @@
     <string name="select_piece">Select a piece to move</string>
     <string name="select_destination">Select a destination</string>
     <string name="select_promotion">Select a piece to promote</string>
-    <string name="reset_button">RESET</string>
     <string name="white">White: </string>
     <string name="black">Black: </string>
     <string name="title_activity_two_player_chess">twoPlayerChess</string>
@@ -14,6 +13,14 @@
     <string name="green_board">green_board</string>
     <string name="undo">undo</string>
     <string name="redo">redo</string>
+    <string name="undo_all">undo all</string>
+    <string name="redo_all">redo all</string>
+    <string name="reset">reset</string>
+    <string name="promotion_piece_queen">Queen</string>
+    <string name="promotion_piece_rook">Rook</string>
+    <string name="promotion_piece_bishop">Bishop</string>
+    <string name="promotion_piece_knight">Knight</string>
+
 
     //board numbers
     <string name="boardNumber8">8</string>

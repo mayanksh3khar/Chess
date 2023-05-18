@@ -1,7 +1,6 @@
 package com.monk3y.chess;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
@@ -55,15 +54,46 @@ public class MainActivity extends AppCompatActivity {
     int black_rook1_move_no=-1;
     boolean black_rook2_moved=false;
     int black_rook2_move_no=-1;
+    
+    
+    //En Passant
+    //White
+    boolean white_pawn1_moved=false;
+    int white_pawn1_move_no=-1;
+    boolean white_pawn2_moved=false;
+    int white_pawn2_move_no=-1;
+    boolean white_pawn3_moved=false;
+    int white_pawn3_move_no=-1;
+    boolean white_pawn4_moved=false;
+    int white_pawn4_move_no=-1;
+    boolean white_pawn5_moved=false;
+    int white_pawn5_move_no=-1;
+    boolean white_pawn6_moved=false;
+    int white_pawn6_move_no=-1;
+    boolean white_pawn7_moved=false;
+    int white_pawn7_move_no=-1;
+    boolean white_pawn8_moved=false;
+    int white_pawn8_move_no=-1;
+    //Black
+    boolean black_pawn1_moved=false;
+    int black_pawn1_move_no=-1;
+    boolean black_pawn2_moved=false;
+    int black_pawn2_move_no=-1;
+    boolean black_pawn3_moved=false;
+    int black_pawn3_move_no=-1;
+    boolean black_pawn4_moved=false;
+    int black_pawn4_move_no=-1;
+    boolean black_pawn5_moved=false;
+    int black_pawn5_move_no=-1;
+    boolean black_pawn6_moved=false;
+    int black_pawn6_move_no=-1;
+    boolean black_pawn7_moved=false;
+    int black_pawn7_move_no=-1;
+    boolean black_pawn8_moved=false;
+    int black_pawn8_move_no=-1;
 
 
-
-    //TODO:Declare variables for En Passant, Check Alert/Restrict, Checkmate, Draw by (Stalemate, 50/75 Move Rule, 3 Fold Repetition, Insufficient Material)
-
-
-
-
-
+    //TODO:Declare variables for Check Alert/Restrict, Checkmate, Draw by (Stalemate, 50/75 Move Rule, 3 Fold Repetition, Insufficient Material)
 
 
     //This runs on Click
@@ -182,12 +212,12 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
-            if(places[npos][apos]!=2 && places[npos][apos]!=3 && places[npos][apos]!=4 && places[npos][apos]!=5)
+            if(places[npos][apos]!=2 && places[npos][apos]!=3 && places[npos][apos]!=4 && places[npos][apos]!=5 && places[npos][apos]!=6)
             {
                 return;
             }
 
-            //Promotion
+            //Promotion Move
             if(places[npos][apos]==4) {
                 FrameLayout promotion = findViewById(R.id.promotion_palette);
                 promotion.setVisibility(View.VISIBLE);
@@ -244,7 +274,7 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
-            //Castling
+            //Castling Move
             if(places[npos][apos]==5) {
                 //Resetting places
                 reset_places();
@@ -253,7 +283,6 @@ public class MainActivity extends AppCompatActivity {
                 pieces[npos][apos] = selected_piece;
                 pieces[init_npos][init_apos] = '-';
 
-                //Castling
                 {
                     if (selected_piece == 'k') {
                         if (apos == 6) {
@@ -281,6 +310,31 @@ public class MainActivity extends AppCompatActivity {
                 piece_selected = false;
             }
 
+            //En Passant Move
+            if(places[npos][apos]==6) {
+                //Resetting places
+                reset_places();
+
+                //Moving piece
+                pieces[npos][apos] = selected_piece;
+                pieces[init_npos][init_apos] = '-';
+
+                //Capturing piece
+                if(selected_piece=='p')
+                {
+                    pieces[npos-1][apos]='-';
+                }
+                else if(selected_piece=='P')
+                {
+                    pieces[npos+1][apos]='-';
+                }
+
+                //Finally
+                show_piece.setImageResource(R.drawable.blank);
+                draw_board();
+                piece_selected = false;
+            }
+
 
             //Resetting places
             reset_places();
@@ -290,7 +344,7 @@ public class MainActivity extends AppCompatActivity {
             pieces[init_npos][init_apos]='-';
 
 
-            //Castling
+            //Castling Variables
 
             {
                 if (selected_piece == 'k') {
@@ -317,7 +371,82 @@ public class MainActivity extends AppCompatActivity {
                     black_rook2_moved = true;
                     black_rook2_move_no= move_no;
                 }
-                Log.d("rook2",white_rook2_moved+"");
+            }
+
+            //En Passant Variables
+            if(selected_piece == 'p' && init_npos == 1 && npos == 3 ) {
+                switch (apos)
+                {
+                    case 0:
+                        white_pawn1_move_no = move_no+1;
+                        white_pawn1_moved = true;
+                        break;
+                    case 1:
+                        white_pawn2_move_no = move_no+1;
+                        white_pawn2_moved = true;
+                        break;
+                    case 2:
+                        white_pawn3_move_no = move_no+1;
+                        white_pawn3_moved = true;
+                        break;
+                    case 3:
+                        white_pawn4_move_no = move_no+1;
+                        white_pawn4_moved = true;
+                        break;
+                    case 4:
+                        white_pawn5_move_no = move_no+1;
+                        white_pawn5_moved = true;
+                        break;
+                    case 5:
+                        white_pawn6_move_no = move_no+1;
+                        white_pawn6_moved = true;
+                        break;
+                    case 6:
+                        white_pawn7_move_no = move_no+1;
+                        white_pawn7_moved = true;
+                        break;
+                    case 7:
+                        white_pawn8_move_no = move_no+1;
+                        white_pawn8_moved = true;
+                        break;
+                }
+            }
+            else if(selected_piece == 'P' && init_npos == 6 && npos == 4 ) {
+                switch (apos)
+                {
+                    case 0:
+                        black_pawn1_move_no = move_no+1;
+                        black_pawn1_moved = true;
+                        break;
+                    case 1:
+                        black_pawn2_move_no = move_no+1;
+                        black_pawn2_moved = true;
+                        break;
+                    case 2:
+                        black_pawn3_move_no = move_no+1;
+                        black_pawn3_moved = true;
+                        break;
+                    case 3:
+                        black_pawn4_move_no = move_no+1;
+                        black_pawn4_moved = true;
+                        break;
+                    case 4:
+                        black_pawn5_move_no = move_no+1;
+                        black_pawn5_moved = true;
+                        break;
+                    case 5:
+                        black_pawn6_move_no = move_no+1;
+                        black_pawn6_moved = true;
+                        break;
+                    case 6:
+                        black_pawn7_move_no = move_no+1;
+                        black_pawn7_moved = true;
+                        break;
+                    case 7:
+                        black_pawn8_move_no = move_no+1;
+                        black_pawn8_moved = true;
+                        break;
+                }
             }
 
             //Finally
@@ -674,7 +803,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     //King
-    //TODO: Castling -- Doing
     //TODO: Check
     //TODO: Avoid Check Places
     //White King
@@ -785,13 +913,17 @@ public class MainActivity extends AppCompatActivity {
 
 
     //Pawn
-    //TODO: En passant
     //White Pawn
     public void wpawn(int npos, int apos)
     {
-        //If nothing is in front
+        //Normal Move
         if(pieces[npos+1][apos]=='-')
             places[npos+1][apos]=2;
+        
+        //If starting position
+        if(npos==1 && pieces[npos+2][apos]=='-')
+            places[npos+2][apos]=2;
+
         //Capturing
         {
             //If something is in diagonal
@@ -811,11 +943,7 @@ public class MainActivity extends AppCompatActivity {
                     places[npos + 1][apos - 1] = 3;
             }
         }
-        //If starting position
-        if(npos==1 && pieces[npos+2][apos]=='-')
-            places[npos+2][apos]=2;
-
-
+        
         //Promotion
         if(npos==6)
         {
@@ -837,15 +965,71 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        //En passant
+        if(npos==4)
+        {
+            switch (apos)
+            {
+                case 0:
+                    if(pieces[npos][apos+1]=='P' && pieces[npos+1][apos+1]=='-' && black_pawn2_move_no==move_no && black_pawn2_moved)
+                        places[npos + 1][apos + 1] = 6;
+                    break;
+                case 1:
+                    if(pieces[npos][apos+1]=='P' && pieces[npos+1][apos+1]=='-' && black_pawn3_move_no==move_no && black_pawn3_moved)
+                        places[npos + 1][apos + 1] = 6;
+                    if(pieces[npos][apos-1]=='P' && pieces[npos+1][apos-1]=='-' && black_pawn1_move_no==move_no && black_pawn1_moved)
+                        places[npos + 1][apos - 1] = 6;
+                    break;
+                case 2:
+                    if(pieces[npos][apos+1]=='P' && pieces[npos+1][apos+1]=='-' && black_pawn4_move_no==move_no && black_pawn4_moved)
+                        places[npos + 1][apos + 1] = 6;
+                    if(pieces[npos][apos-1]=='P' && pieces[npos+1][apos-1]=='-' && black_pawn2_move_no==move_no && black_pawn2_moved)
+                        places[npos + 1][apos - 1] = 6;
+                    break;
+                case 3:
+                    if(pieces[npos][apos+1]=='P' && pieces[npos+1][apos+1]=='-' && black_pawn5_move_no==move_no && black_pawn5_moved)
+                        places[npos + 1][apos + 1] = 6;
+                    if(pieces[npos][apos-1]=='P' && pieces[npos+1][apos-1]=='-' && black_pawn3_move_no==move_no && black_pawn3_moved)
+                        places[npos + 1][apos - 1] = 6;
+                    break;
+                case 4:
+                    if(pieces[npos][apos+1]=='P' && pieces[npos+1][apos+1]=='-' && black_pawn6_move_no==move_no && black_pawn6_moved)
+                        places[npos + 1][apos + 1] = 6;
+                    if(pieces[npos][apos-1]=='P' && pieces[npos+1][apos-1]=='-' && black_pawn4_move_no==move_no && black_pawn4_moved)
+                        places[npos + 1][apos - 1] = 6;
+                    break;
+                case 5:
+                    if(pieces[npos][apos+1]=='P' && pieces[npos+1][apos+1]=='-' && black_pawn7_move_no==move_no && black_pawn7_moved)
+                        places[npos + 1][apos + 1] = 6;
+                    if(pieces[npos][apos-1]=='P' && pieces[npos+1][apos-1]=='-' && black_pawn5_move_no==move_no && black_pawn5_moved)
+                        places[npos + 1][apos - 1] = 6;
+                    break;
+                case 6:
+                    if(pieces[npos][apos+1]=='P' && pieces[npos+1][apos+1]=='-' && black_pawn8_move_no==move_no && black_pawn8_moved)
+                        places[npos + 1][apos + 1] = 6;
+                    if(pieces[npos][apos-1]=='P' && pieces[npos+1][apos-1]=='-' && black_pawn6_move_no==move_no && black_pawn6_moved)
+                        places[npos + 1][apos - 1] = 6;
+                    break;
+                case 7:
+                    if(pieces[npos][apos-1]=='P' && pieces[npos+1][apos-1]=='-' && black_pawn7_move_no==move_no && black_pawn7_moved)
+                        places[npos + 1][apos - 1] = 6;
+                    break;
+            }
+        }
+
         draw_board();
     }
 
     //Black Pawn
     public void bpawn(int npos, int apos)
     {
-        //If nothing is in front
+        //Normal Move
         if(pieces[npos-1][apos]=='-')
             places[npos-1][apos]=2;
+        
+        //If starting position
+        if(npos==6 && pieces[npos-2][apos]=='-')
+            places[npos-2][apos]=2;
 
         //If something is in diagonal
         if(apos>=1 && apos<=6) {
@@ -863,10 +1047,6 @@ public class MainActivity extends AppCompatActivity {
             if (pieces[npos - 1][apos - 1] >= 'a' && pieces[npos - 1][apos - 1] <= 'z')
                 places[npos - 1][apos - 1] = 3;
         }
-        //If starting position
-        if(npos==6 && pieces[npos-2][apos]=='-')
-            places[npos-2][apos]=2;
-
 
         //Promotion
         if(npos==1)
@@ -888,6 +1068,59 @@ public class MainActivity extends AppCompatActivity {
                     places[npos - 1][apos - 1] = 4;
             }
         }
+
+        //En Passant
+        if(npos==3)
+        {
+            switch (apos)
+            {
+                case 0:
+                    if(pieces[npos][apos+1]=='p' && pieces[npos-1][apos+1]=='-' && white_pawn2_move_no==move_no && white_pawn2_moved)
+                        places[npos - 1][apos + 1] = 6;
+                    break;
+                case 1:
+                    if(pieces[npos][apos-1]=='p' && pieces[npos-1][apos-1]=='-' && white_pawn1_move_no==move_no && white_pawn1_moved)
+                        places[npos - 1][apos - 1] = 6;
+                    if(pieces[npos][apos+1]=='p' && pieces[npos-1][apos+1]=='-' && white_pawn3_move_no==move_no && white_pawn3_moved)
+                        places[npos - 1][apos + 1] = 6;
+                    break;
+                case 2:
+                    if(pieces[npos][apos-1]=='p' && pieces[npos-1][apos-1]=='-' && white_pawn2_move_no==move_no && white_pawn2_moved)
+                        places[npos - 1][apos - 1] = 6;
+                    if(pieces[npos][apos+1]=='p' && pieces[npos-1][apos+1]=='-' && white_pawn4_move_no==move_no && white_pawn4_moved)
+                        places[npos - 1][apos + 1] = 6;
+                    break;
+                case 3:
+                    if(pieces[npos][apos-1]=='p' && pieces[npos-1][apos-1]=='-' && white_pawn3_move_no==move_no && white_pawn3_moved)
+                        places[npos - 1][apos - 1] = 6;
+                    if(pieces[npos][apos+1]=='p' && pieces[npos-1][apos+1]=='-' && white_pawn5_move_no==move_no && white_pawn5_moved)
+                        places[npos - 1][apos + 1] = 6;
+                    break;
+                case 4:
+                    if(pieces[npos][apos-1]=='p' && pieces[npos-1][apos-1]=='-' && white_pawn4_move_no==move_no && white_pawn4_moved)
+                        places[npos - 1][apos - 1] = 6;
+                    if(pieces[npos][apos+1]=='p' && pieces[npos-1][apos+1]=='-' && white_pawn6_move_no==move_no && white_pawn6_moved)
+                        places[npos - 1][apos + 1] = 6;
+                    break;
+                case 5:
+                    if(pieces[npos][apos-1]=='p' && pieces[npos-1][apos-1]=='-' && white_pawn5_move_no==move_no && white_pawn5_moved)
+                        places[npos - 1][apos - 1] = 6;
+                    if(pieces[npos][apos+1]=='p' && pieces[npos-1][apos+1]=='-' && white_pawn7_move_no==move_no && white_pawn7_moved)
+                        places[npos - 1][apos + 1] = 6;
+                    break;
+                case 6:
+                    if(pieces[npos][apos-1]=='p' && pieces[npos-1][apos-1]=='-' && white_pawn6_move_no==move_no && white_pawn6_moved)
+                        places[npos - 1][apos - 1] = 6;
+                    if(pieces[npos][apos+1]=='p' && pieces[npos-1][apos+1]=='-' && white_pawn8_move_no==move_no && white_pawn8_moved)
+                        places[npos - 1][apos + 1] = 6;
+                    break;
+                case 7:
+                    if(pieces[npos][apos-1]=='p' && pieces[npos-1][apos-1]=='-' && white_pawn7_move_no==move_no && white_pawn7_moved)
+                        places[npos - 1][apos - 1] = 6;
+                    break;
+            }
+        }
+
         draw_board();
     }
 
@@ -941,7 +1174,6 @@ public class MainActivity extends AppCompatActivity {
         FrameLayout palette = findViewById(R.id.promotion_palette);
         palette.setVisibility(View.INVISIBLE);
 
-        Log.d("promotion", "Promotion_Palette: "+pieces[promotion_npos][promotion_apos]+ " " + promotion_apos + " " + promotion_npos);
     }
 
     public void draw_board(){
@@ -1028,6 +1260,8 @@ public class MainActivity extends AppCompatActivity {
             return R.drawable.indicator3;
         else if(toSet==5) //Castling
             return R.drawable.indicator4;
+        else if(toSet==6) //En Passant
+            return R.drawable.indicator5;
         else
             return R.drawable.blank;
     }
@@ -1083,6 +1317,7 @@ public class MainActivity extends AppCompatActivity {
     public void undo(View view)
     {
         if (move_no > 0 && !is_promotion) {
+            //Reverting castling variables
             {
                 if(move_no-1==white_king_move_no)
                     white_king_moved= false;
@@ -1097,6 +1332,45 @@ public class MainActivity extends AppCompatActivity {
                 if(move_no-1==black_rook2_move_no)
                     black_rook2_moved= false;
             }
+
+
+            //Resetting en passant variables
+            {
+                if(move_no-2==white_pawn1_move_no)
+                    white_pawn1_moved=false;
+                if(move_no-2==white_pawn2_move_no)
+                    white_pawn2_moved=false;
+                if(move_no-2==white_pawn3_move_no)
+                    white_pawn3_moved=false;
+                if(move_no-2==white_pawn4_move_no)
+                    white_pawn4_moved=false;
+                if(move_no-2==white_pawn5_move_no)
+                    white_pawn5_moved=false;
+                if(move_no-2==white_pawn6_move_no)
+                    white_pawn6_moved=false;
+                if(move_no-2==white_pawn7_move_no)
+                    white_pawn7_moved=false;
+                if(move_no-2==white_pawn8_move_no)
+                    white_pawn8_moved=false;
+                if(move_no-2==black_pawn1_move_no)
+                    black_pawn1_moved=false;
+                if(move_no-2==black_pawn2_move_no)
+                    black_pawn2_moved=false;
+                if(move_no-2==black_pawn3_move_no)
+                    black_pawn3_moved=false;
+                if(move_no-2==black_pawn4_move_no)
+                    black_pawn4_moved=false;
+                if(move_no-2==black_pawn5_move_no)
+                    black_pawn5_moved=false;
+                if(move_no-2==black_pawn6_move_no)
+                    black_pawn6_moved=false;
+                if(move_no-2==black_pawn7_move_no)
+                    black_pawn7_moved=false;
+                if(move_no-2==black_pawn8_move_no)
+                    black_pawn8_moved=false;
+            }
+
+
             move_no--;
             for (int i = 0; i < 8; i++)
                 System.arraycopy(boardHistory[move_no][i], 0, pieces[i], 0, 8);
@@ -1124,6 +1398,7 @@ public class MainActivity extends AppCompatActivity {
     public void redo(View view)
     {
         if (move_no < max_move_no && !is_promotion) {
+            //Reapplying castling variables
             {
                 if(move_no+1==white_king_move_no)
                     white_king_moved= true;
@@ -1138,6 +1413,44 @@ public class MainActivity extends AppCompatActivity {
                 if(move_no+1==black_rook2_move_no)
                     black_rook2_moved= true;
             }
+
+            //Reverting en passant variables
+            {
+                if(move_no+1==white_pawn1_move_no)
+                    white_pawn1_moved=true;
+                if(move_no+1==white_pawn2_move_no)
+                    white_pawn2_moved=true;
+                if(move_no+1==white_pawn3_move_no)
+                    white_pawn3_moved=true;
+                if(move_no+1==white_pawn4_move_no)
+                    white_pawn4_moved=true;
+                if(move_no+1==white_pawn5_move_no)
+                    white_pawn5_moved=true;
+                if(move_no+1==white_pawn6_move_no)
+                    white_pawn6_moved=true;
+                if(move_no+1==white_pawn7_move_no)
+                    white_pawn7_moved=true;
+                if(move_no+1==white_pawn8_move_no)
+                    white_pawn8_moved=true;
+                if(move_no+1==black_pawn1_move_no)
+                    black_pawn1_moved=true;
+                if(move_no+1==black_pawn2_move_no)
+                    black_pawn2_moved=true;
+                if(move_no+1==black_pawn3_move_no)
+                    black_pawn3_moved=true;
+                if(move_no+1==black_pawn4_move_no)
+                    black_pawn4_moved=true;
+                if(move_no+1==black_pawn5_move_no)
+                    black_pawn5_moved=true;
+                if(move_no+1==black_pawn6_move_no)
+                    black_pawn6_moved=true;
+                if(move_no+1==black_pawn7_move_no)
+                    black_pawn7_moved=true;
+                if(move_no+1==black_pawn8_move_no)
+                    black_pawn8_moved=true;
+            }
+
+
             move_no++;
             for (int i = 0; i < 8; i++)
                 System.arraycopy(boardHistory[move_no][i], 0, pieces[i], 0, 8);
@@ -1270,6 +1583,8 @@ public class MainActivity extends AppCompatActivity {
         hint.setText(getString(R.string.white)+" "+getString(R.string.select_piece));
         storeBoard(0);
         move_no=0;
+
+        //Castling Variables Reset
         white_king_moved=false;
         white_king_move_no=-1;
         black_king_moved=false;
@@ -1282,5 +1597,40 @@ public class MainActivity extends AppCompatActivity {
         black_rook1_move_no=-1;
         black_rook2_moved=false;
         black_rook2_move_no=-1;
+
+        //En Passant Variables Reset
+        black_pawn1_moved=false;
+        black_pawn1_move_no=-1;
+        black_pawn2_moved=false;
+        black_pawn2_move_no=-1;
+        black_pawn3_moved=false;
+        black_pawn3_move_no=-1;
+        black_pawn4_moved=false;
+        black_pawn4_move_no=-1;
+        black_pawn5_moved=false;
+        black_pawn5_move_no=-1;
+        black_pawn6_moved=false;
+        black_pawn6_move_no=-1;
+        black_pawn7_moved=false;
+        black_pawn7_move_no=-1;
+        black_pawn8_moved=false;
+        black_pawn8_move_no=-1;
+
+        white_pawn1_moved=false;
+        white_pawn1_move_no=-1;
+        white_pawn2_moved=false;
+        white_pawn2_move_no=-1;
+        white_pawn3_moved=false;
+        white_pawn3_move_no=-1;
+        white_pawn4_moved=false;
+        white_pawn4_move_no=-1;
+        white_pawn5_moved=false;
+        white_pawn5_move_no=-1;
+        white_pawn6_moved=false;
+        white_pawn6_move_no=-1;
+        white_pawn7_moved=false;
+        white_pawn7_move_no=-1;
+        white_pawn8_moved=false;
+        white_pawn8_move_no=-1;
     }
 }

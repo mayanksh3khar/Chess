@@ -14,11 +14,6 @@ Also, the game is not optimized for tablets.
 
 ## Features to Implement
 
-
-En Passant
-
-Castling
-
 Check Alert/Restrict
 
 Checkmate
@@ -29,7 +24,7 @@ Draw by Stalemate
 
 Draw by 3 Fold Repetition
 
-Draw byInsufficient Material
+Draw by Insufficient Material
 
 Undo Move (Done) 
 
@@ -44,6 +39,5 @@ Online Play
 Chess Engine
 
 ---
-
 
 ### Please enjoy the game and feel free to give me any feedback.
