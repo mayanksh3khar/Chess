@@ -20,6 +20,7 @@
     <string name="promotion_piece_rook">Rook</string>
     <string name="promotion_piece_bishop">Bishop</string>
     <string name="promotion_piece_knight">Knight</string>
+    <string name="check">Check</string>
 
 
     //board numbers

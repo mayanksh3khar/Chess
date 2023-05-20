@@ -58,42 +58,49 @@ public class MainActivity extends AppCompatActivity {
     
     //En Passant
     //White
-    boolean white_pawn1_moved=false;
+    boolean white_pawn1_moved_two=false;
     int white_pawn1_move_no=-1;
-    boolean white_pawn2_moved=false;
+    boolean white_pawn2_moved_two=false;
     int white_pawn2_move_no=-1;
-    boolean white_pawn3_moved=false;
+    boolean white_pawn3_moved_two=false;
     int white_pawn3_move_no=-1;
-    boolean white_pawn4_moved=false;
+    boolean white_pawn4_moved_two=false;
     int white_pawn4_move_no=-1;
-    boolean white_pawn5_moved=false;
+    boolean white_pawn5_moved_two=false;
     int white_pawn5_move_no=-1;
-    boolean white_pawn6_moved=false;
+    boolean white_pawn6_moved_two=false;
     int white_pawn6_move_no=-1;
-    boolean white_pawn7_moved=false;
+    boolean white_pawn7_moved_two=false;
     int white_pawn7_move_no=-1;
-    boolean white_pawn8_moved=false;
+    boolean white_pawn8_moved_two=false;
     int white_pawn8_move_no=-1;
     //Black
-    boolean black_pawn1_moved=false;
+    boolean black_pawn1_moved_two=false;
     int black_pawn1_move_no=-1;
-    boolean black_pawn2_moved=false;
+    boolean black_pawn2_moved_two=false;
     int black_pawn2_move_no=-1;
-    boolean black_pawn3_moved=false;
+    boolean black_pawn3_moved_two=false;
     int black_pawn3_move_no=-1;
-    boolean black_pawn4_moved=false;
+    boolean black_pawn4_moved_two=false;
     int black_pawn4_move_no=-1;
-    boolean black_pawn5_moved=false;
+    boolean black_pawn5_moved_two=false;
     int black_pawn5_move_no=-1;
-    boolean black_pawn6_moved=false;
+    boolean black_pawn6_moved_two=false;
     int black_pawn6_move_no=-1;
-    boolean black_pawn7_moved=false;
+    boolean black_pawn7_moved_two=false;
     int black_pawn7_move_no=-1;
-    boolean black_pawn8_moved=false;
+    boolean black_pawn8_moved_two=false;
     int black_pawn8_move_no=-1;
 
+    //Check
+    boolean white_check=false;
+    boolean black_check=false;
+    //Check Places
+    int[][] white_check_places = new int[8][8];
+    int[][] black_check_places = new int[8][8];
 
-    //TODO:Declare variables for Check Alert/Restrict, Checkmate, Draw by (Stalemate, 50/75 Move Rule, 3 Fold Repetition, Insufficient Material)
+
+    //TODO:Declare variables for Check Alert, Checkmate, Draw by (Stalemate, 50/75 Move Rule, 3 Fold Repetition, Insufficient Material)
 
 
     //This runs on Click
@@ -107,10 +114,15 @@ public class MainActivity extends AppCompatActivity {
         int apos,npos;
         String position = img.getTag().toString();
 
+        //Invoking checkAttacked() to update the check for all attacks
+        checkAttacked();
+
 
         //If piece is not selected
         if(!piece_selected && !is_promotion)
         {
+
+
             //Resetting places
             reset_places();
 
@@ -201,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
             }
             npos = position.charAt(1)-'0'-1;
 
-            //If move is invalid
+            //If selected same piece
             if(places[npos][apos]==1)
             {
 
@@ -211,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
                 show_piece.setImageResource(R.drawable.blank);
                 return;
             }
-
+            //If move is invalid
             if(places[npos][apos]!=2 && places[npos][apos]!=3 && places[npos][apos]!=4 && places[npos][apos]!=5 && places[npos][apos]!=6)
             {
                 return;
@@ -379,35 +391,35 @@ public class MainActivity extends AppCompatActivity {
                 {
                     case 0:
                         white_pawn1_move_no = move_no+1;
-                        white_pawn1_moved = true;
+                        white_pawn1_moved_two = true;
                         break;
                     case 1:
                         white_pawn2_move_no = move_no+1;
-                        white_pawn2_moved = true;
+                        white_pawn2_moved_two = true;
                         break;
                     case 2:
                         white_pawn3_move_no = move_no+1;
-                        white_pawn3_moved = true;
+                        white_pawn3_moved_two = true;
                         break;
                     case 3:
                         white_pawn4_move_no = move_no+1;
-                        white_pawn4_moved = true;
+                        white_pawn4_moved_two = true;
                         break;
                     case 4:
                         white_pawn5_move_no = move_no+1;
-                        white_pawn5_moved = true;
+                        white_pawn5_moved_two = true;
                         break;
                     case 5:
                         white_pawn6_move_no = move_no+1;
-                        white_pawn6_moved = true;
+                        white_pawn6_moved_two = true;
                         break;
                     case 6:
                         white_pawn7_move_no = move_no+1;
-                        white_pawn7_moved = true;
+                        white_pawn7_moved_two = true;
                         break;
                     case 7:
                         white_pawn8_move_no = move_no+1;
-                        white_pawn8_moved = true;
+                        white_pawn8_moved_two = true;
                         break;
                 }
             }
@@ -416,35 +428,35 @@ public class MainActivity extends AppCompatActivity {
                 {
                     case 0:
                         black_pawn1_move_no = move_no+1;
-                        black_pawn1_moved = true;
+                        black_pawn1_moved_two = true;
                         break;
                     case 1:
                         black_pawn2_move_no = move_no+1;
-                        black_pawn2_moved = true;
+                        black_pawn2_moved_two = true;
                         break;
                     case 2:
                         black_pawn3_move_no = move_no+1;
-                        black_pawn3_moved = true;
+                        black_pawn3_moved_two = true;
                         break;
                     case 3:
                         black_pawn4_move_no = move_no+1;
-                        black_pawn4_moved = true;
+                        black_pawn4_moved_two = true;
                         break;
                     case 4:
                         black_pawn5_move_no = move_no+1;
-                        black_pawn5_moved = true;
+                        black_pawn5_moved_two = true;
                         break;
                     case 5:
                         black_pawn6_move_no = move_no+1;
-                        black_pawn6_moved = true;
+                        black_pawn6_moved_two = true;
                         break;
                     case 6:
                         black_pawn7_move_no = move_no+1;
-                        black_pawn7_moved = true;
+                        black_pawn7_moved_two = true;
                         break;
                     case 7:
                         black_pawn8_move_no = move_no+1;
-                        black_pawn8_moved = true;
+                        black_pawn8_moved_two = true;
                         break;
                 }
             }
@@ -480,19 +492,19 @@ public class MainActivity extends AppCompatActivity {
         switch (selected_piece)
         {
 
-            case 'r': wrook(npos,apos);break;
-            case 'n': wknight(npos,apos);break;
-            case 'b': wbishop(npos,apos);break;
-            case 'q': wqueen(npos,apos);break;
-            case 'k': wking(npos,apos);break;
-            case 'p': wpawn(npos,apos);break;
+            case 'r': wrook(npos,apos,places);break;
+            case 'n': wknight(npos,apos,places);break;
+            case 'b': wbishop(npos,apos,places);break;
+            case 'q': wqueen(npos,apos,places);break;
+            case 'k': wking(npos,apos,places);break;
+            case 'p': wpawn(npos,apos,places);break;
             //
-            case 'R': brook(npos,apos);break;
-            case 'N': bknight(npos,apos);break;
-            case 'B': bbishop(npos,apos);break;
-            case 'Q': bqueen(npos,apos);break;
-            case 'K': bking(npos,apos);break;
-            case 'P': bpawn(npos,apos);break;
+            case 'R': brook(npos,apos,places);break;
+            case 'N': bknight(npos,apos,places);break;
+            case 'B': bbishop(npos,apos,places);break;
+            case 'Q': bqueen(npos,apos,places);break;
+            case 'K': bking(npos,apos,places);break;
+            case 'P': bpawn(npos,apos,places);break;
             default:  break;
 
         }
@@ -503,7 +515,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Rook
     //White Rook
-    public void wrook(int npos,int apos)
+    public void wrook(int npos,int apos, int[][] places)
     {
         for(int i=1;i<=7;i++)
         {
@@ -556,7 +568,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Black Rook
-    public void brook(int npos, int apos)
+    public void brook(int npos, int apos, int[][] places)
     {
         for(int i=1;i<=7;i++)
         {
@@ -611,7 +623,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Knight
     //White Knight
-    public void wknight(int npos,int apos)
+    public void wknight(int npos,int apos, int[][] places)
     {
         if (npos>=2 && apos>=1 && (pieces[npos-2][apos-1]=='-' || pieces[npos-2][apos-1]>'A' && pieces[npos-2][apos-1]<'Z')) {
             places[npos - 2][apos - 1] = 2;
@@ -656,7 +668,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Black Knight
-    public void bknight(int npos,int apos)
+    public void bknight(int npos,int apos, int[][] places)
     {
         if (npos>=2 && apos>=1 && (pieces[npos-2][apos-1]=='-' || pieces[npos-2][apos-1]>'a' && pieces[npos-2][apos-1]<'z')) {
             places[npos - 2][apos - 1] = 2;
@@ -703,7 +715,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Bishop
     //White Bishop
-    public void wbishop(int npos,int apos)
+    public void wbishop(int npos,int apos, int[][] places)
     {
         int i,j;
         i=npos+1;j=apos+1;
@@ -745,7 +757,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Black Bishop
-    public void bbishop(int npos,int apos)
+    public void bbishop(int npos,int apos, int[][] places)
     {
         int i,j;
         i=npos+1;j=apos+1;
@@ -789,123 +801,128 @@ public class MainActivity extends AppCompatActivity {
 
     //Queen
     //White Queen
-    public void wqueen(int npos, int apos)
+    public void wqueen(int npos, int apos, int[][] places)
     {
-        wrook(npos,apos);
-        wbishop(npos,apos);
+        wrook(npos,apos,places);
+        wbishop(npos,apos,places);
     }
     //Black Queen
-    public void bqueen(int npos, int apos)
+    public void bqueen(int npos, int apos, int[][] places)
     {
-        brook(npos,apos);
-        bbishop(npos,apos);
+        brook(npos,apos,places);
+        bbishop(npos,apos,places);
     }
 
 
     //King
     //TODO: Check
-    //TODO: Avoid Check Places
+    //TODO: Checkmate
+    //TODO: Draw
     //White King
-    public void wking(int npos, int apos)
+    public void wking(int npos, int apos, int[][] places)
     {
-        if(npos<=6 && (pieces[npos+1][apos]=='-' || pieces[npos+1][apos]>'A' && pieces[npos+1][apos]<'Z')) {
+
+
+        if(npos<=6 && (pieces[npos+1][apos]=='-' || pieces[npos+1][apos]>'A' && pieces[npos+1][apos]<'Z') && white_check_places[npos+1][apos]==0) {
             places[npos + 1][apos] = 2;
             if (pieces[npos + 1][apos] > 'A' && pieces[npos + 1][apos] < 'Z')
                 places[npos + 1][apos] = 3;
         }
-        if(npos>=1 && (pieces[npos-1][apos]=='-' || pieces[npos-1][apos]>'A' && pieces[npos-1][apos]<'Z')) {
+        if(npos>=1 && (pieces[npos-1][apos]=='-' || pieces[npos-1][apos]>'A' && pieces[npos-1][apos]<'Z') && white_check_places[npos-1][apos]==0) {
             places[npos - 1][apos] = 2;
             if (pieces[npos - 1][apos] > 'A' && pieces[npos - 1][apos] < 'Z')
                 places[npos - 1][apos] = 3;
         }
-        if(apos<=6 && (pieces[npos][apos+1]=='-' || pieces[npos][apos+1]>'A' && pieces[npos][apos+1]<'Z')) {
+        if(apos<=6 && (pieces[npos][apos+1]=='-' || pieces[npos][apos+1]>'A' && pieces[npos][apos+1]<'Z') && white_check_places[npos][apos+1]==0) {
             places[npos][apos + 1] = 2;
             if (pieces[npos][apos + 1] > 'A' && pieces[npos][apos + 1] < 'Z')
                 places[npos][apos + 1] = 3;
         }
-        if(apos>=1 && (pieces[npos][apos-1]=='-' || pieces[npos][apos-1]>'A' && pieces[npos][apos-1]<'Z')) {
+        if(apos>=1 && (pieces[npos][apos-1]=='-' || pieces[npos][apos-1]>'A' && pieces[npos][apos-1]<'Z') && white_check_places[npos][apos-1]==0) {
             places[npos][apos - 1] = 2;
             if (pieces[npos][apos - 1] > 'A' && pieces[npos][apos - 1] < 'Z')
                 places[npos][apos - 1] = 3;
         }
-        if(npos<=6 && apos<=6 && (pieces[npos+1][apos+1]=='-' || pieces[npos+1][apos+1]>'A' && pieces[npos+1][apos+1]<'Z')) {
+        if(npos<=6 && apos<=6 && (pieces[npos+1][apos+1]=='-' || pieces[npos+1][apos+1]>'A' && pieces[npos+1][apos+1]<'Z') && white_check_places[npos+1][apos+1]==0) {
             places[npos + 1][apos + 1] = 2;
             if (pieces[npos + 1][apos + 1] > 'A' && pieces[npos + 1][apos + 1] < 'Z')
                 places[npos + 1][apos + 1] = 3;
         }
-        if(npos<=6 && apos>=1 && (pieces[npos+1][apos-1]=='-' || pieces[npos+1][apos-1]>'A' && pieces[npos+1][apos-1]<'Z')) {
+        if(npos<=6 && apos>=1 && (pieces[npos+1][apos-1]=='-' || pieces[npos+1][apos-1]>'A' && pieces[npos+1][apos-1]<'Z') && white_check_places[npos+1][apos-1]==0) {
             places[npos + 1][apos - 1] = 2;
             if (pieces[npos + 1][apos - 1] > 'A' && pieces[npos + 1][apos - 1] < 'Z')
                 places[npos + 1][apos - 1] = 3;
         }
-        if(npos>=1 && apos<=6 && (pieces[npos-1][apos+1]=='-' || pieces[npos-1][apos+1]>'A' && pieces[npos-1][apos+1]<'Z')) {
+        if(npos>=1 && apos<=6 && (pieces[npos-1][apos+1]=='-' || pieces[npos-1][apos+1]>'A' && pieces[npos-1][apos+1]<'Z') && white_check_places[npos-1][apos+1]==0) {
             places[npos - 1][apos + 1] = 2;
             if (pieces[npos - 1][apos + 1] > 'A' && pieces[npos - 1][apos + 1] < 'Z')
                 places[npos - 1][apos + 1] = 3;
         }
-        if(npos>=1 && apos>=1 && (pieces[npos-1][apos-1]=='-' || pieces[npos-1][apos-1]>'A' && pieces[npos-1][apos-1]<'Z')) {
+        if(npos>=1 && apos>=1 && (pieces[npos-1][apos-1]=='-' || pieces[npos-1][apos-1]>'A' && pieces[npos-1][apos-1]<'Z') && white_check_places[npos-1][apos-1]==0) {
             places[npos - 1][apos - 1] = 2;
             if (pieces[npos - 1][apos - 1] > 'A' && pieces[npos - 1][apos - 1] < 'Z')
                 places[npos - 1][apos - 1] = 3;
         }
 
         //Castling
-        if(npos==0 && apos==4 && pieces[0][5]=='-' && pieces[0][6]=='-' && pieces[0][0]=='r' && !white_king_moved && !white_rook2_moved)
+        if(npos==0 && apos==4 && pieces[0][5]=='-' && pieces[0][6]=='-' && pieces[0][0]=='r' && !white_king_moved && !white_rook2_moved && white_check_places[0][4]==0&& white_check_places[0][5]==0 && white_check_places[0][6]==0)
             places[0][6]=5;
-        if(npos==0 && apos==4 && pieces[0][3]=='-' && pieces[0][2]=='-' && pieces[0][1]=='-' && pieces[0][0]=='r' && !white_king_moved && !white_rook1_moved)
+        if(npos==0 && apos==4 && pieces[0][3]=='-' && pieces[0][2]=='-' && pieces[0][1]=='-' && pieces[0][0]=='r' && !white_king_moved && !white_rook1_moved && white_check_places[0][4]==0&& white_check_places[0][3]==0 && white_check_places[0][2]==0 && white_check_places[0][1]==0)
             places[0][2]=5;
 
         draw_board();
     }
 
     //Black King
-    public void bking(int npos, int apos)
+    public void bking(int npos, int apos, int[][] places)
     {
-        if(npos<=6 && (pieces[npos+1][apos]=='-' || pieces[npos+1][apos]>'a' && pieces[npos+1][apos]<'z')) {
+
+
+        if(npos<=6 && (pieces[npos+1][apos]=='-' || pieces[npos+1][apos]>'a' && pieces[npos+1][apos]<'z') && black_check_places[npos+1][apos]==0) {
             places[npos + 1][apos] = 2;
             if (pieces[npos + 1][apos] > 'a' && pieces[npos + 1][apos] < 'z')
                 places[npos + 1][apos] = 3;
         }
-        if(npos>=1 && (pieces[npos-1][apos]=='-' || pieces[npos-1][apos]>'a' && pieces[npos-1][apos]<'z')) {
+        if(npos>=1 && (pieces[npos-1][apos]=='-' || pieces[npos-1][apos]>'a' && pieces[npos-1][apos]<'z') && black_check_places[npos-1][apos]==0) {
             places[npos - 1][apos] = 2;
             if (pieces[npos - 1][apos] > 'a' && pieces[npos - 1][apos] < 'z')
                 places[npos - 1][apos] = 3;
         }
-        if(apos<=6 && (pieces[npos][apos+1]=='-' || pieces[npos][apos+1]>'a' && pieces[npos][apos+1]<'z')) {
+        if(apos<=6 && (pieces[npos][apos+1]=='-' || pieces[npos][apos+1]>'a' && pieces[npos][apos+1]<'z') && black_check_places[npos][apos+1]==0) {
             places[npos][apos + 1] = 2;
             if (pieces[npos][apos + 1] > 'a' && pieces[npos][apos + 1] < 'z')
                 places[npos][apos + 1] = 3;
         }
-        if(apos>=1 && (pieces[npos][apos-1]=='-' || pieces[npos][apos-1]>'a' && pieces[npos][apos-1]<'z')) {
+        if(apos>=1 && (pieces[npos][apos-1]=='-' || pieces[npos][apos-1]>'a' && pieces[npos][apos-1]<'z') && black_check_places[npos][apos-1]==0) {
             places[npos][apos - 1] = 2;
             if (pieces[npos][apos - 1] > 'a' && pieces[npos][apos - 1] < 'z')
                 places[npos][apos - 1] = 3;
         }
-        if(npos<=6 && apos<=6 && (pieces[npos+1][apos+1]=='-' || pieces[npos+1][apos+1]>'a' && pieces[npos+1][apos+1]<'z')) {
+        if(npos<=6 && apos<=6 && (pieces[npos+1][apos+1]=='-' || pieces[npos+1][apos+1]>'a' && pieces[npos+1][apos+1]<'z') && black_check_places[npos+1][apos+1]==0) {
             places[npos + 1][apos + 1] = 2;
             if (pieces[npos + 1][apos + 1] > 'a' && pieces[npos + 1][apos + 1] < 'z')
                 places[npos + 1][apos + 1] = 3;
         }
-        if(npos<=6 && apos>=1 && (pieces[npos+1][apos-1]=='-' || pieces[npos+1][apos-1]>'a' && pieces[npos+1][apos-1]<'z')) {
+        if(npos<=6 && apos>=1 && (pieces[npos+1][apos-1]=='-' || pieces[npos+1][apos-1]>'a' && pieces[npos+1][apos-1]<'z') && black_check_places[npos+1][apos-1]==0) {
             places[npos + 1][apos - 1] = 2;
             if (pieces[npos + 1][apos - 1] > 'a' && pieces[npos + 1][apos - 1] < 'z')
                 places[npos + 1][apos - 1] = 3;
         }
-        if(npos>=1 && apos<=6 && (pieces[npos-1][apos+1]=='-' || pieces[npos-1][apos+1]>'a' && pieces[npos-1][apos+1]<'z')) {
+        if(npos>=1 && apos<=6 && (pieces[npos-1][apos+1]=='-' || pieces[npos-1][apos+1]>'a' && pieces[npos-1][apos+1]<'z') && black_check_places[npos-1][apos+1]==0) {
             places[npos - 1][apos + 1] = 2;
             if (pieces[npos - 1][apos + 1] > 'a' && pieces[npos - 1][apos + 1] < 'z')
                 places[npos - 1][apos + 1] = 3;
         }
-        if(npos>=1 && apos>=1 && (pieces[npos-1][apos-1]=='-' || pieces[npos-1][apos-1]>'a' && pieces[npos-1][apos-1]<'z')) {
+        if(npos>=1 && apos>=1 && (pieces[npos-1][apos-1]=='-' || pieces[npos-1][apos-1]>'a' && pieces[npos-1][apos-1]<'z') && black_check_places[npos-1][apos-1]==0) {
             places[npos - 1][apos - 1] = 2;
             if (pieces[npos - 1][apos - 1] > 'a' && pieces[npos - 1][apos - 1] < 'z')
                 places[npos - 1][apos - 1] = 3;
         }
 
         //Castling
-        if(npos==7 && apos==4 && pieces[7][5]=='-' && pieces[7][6]=='-' && pieces[7][7]=='R' && !black_king_moved && !black_rook2_moved)
+        if(npos==7 && apos==4 && pieces[7][5]=='-' && pieces[7][6]=='-' && pieces[7][7]=='R' && !black_king_moved && !black_rook2_moved && black_check_places[7][4]==0 && black_check_places[7][5]==0 && black_check_places[7][6]==0)
             places[7][6]=5;
-        if(npos==7 && apos==4 && pieces[7][3]=='-' && pieces[7][2]=='-' && pieces[7][1]=='-' && pieces[7][0]=='R' && !black_king_moved && !black_rook1_moved)
+        if(npos==7 && apos==4 && pieces[7][3]=='-' && pieces[7][2]=='-' && pieces[7][1]=='-' && pieces[7][0]=='R' && !black_king_moved && !black_rook1_moved && black_check_places[7][4]==0 && black_check_places[7][3]==0 && black_check_places[7][2]==0 && black_check_places[7][1]==0)
             places[7][2]=5;
 
         draw_board();
@@ -914,7 +931,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Pawn
     //White Pawn
-    public void wpawn(int npos, int apos)
+    public void wpawn(int npos, int apos, int[][] places)
     {
         //Normal Move
         if(pieces[npos+1][apos]=='-')
@@ -971,57 +988,56 @@ public class MainActivity extends AppCompatActivity {
             switch (apos)
             {
                 case 0:
-                    if(pieces[npos][apos+1]=='P' && pieces[npos+1][apos+1]=='-' && black_pawn2_move_no==move_no && black_pawn2_moved)
+                    if(pieces[npos][apos+1]=='P' && pieces[npos+1][apos+1]=='-' && black_pawn2_move_no==move_no && black_pawn2_moved_two)
                         places[npos + 1][apos + 1] = 6;
                     break;
                 case 1:
-                    if(pieces[npos][apos+1]=='P' && pieces[npos+1][apos+1]=='-' && black_pawn3_move_no==move_no && black_pawn3_moved)
+                    if(pieces[npos][apos+1]=='P' && pieces[npos+1][apos+1]=='-' && black_pawn3_move_no==move_no && black_pawn3_moved_two)
                         places[npos + 1][apos + 1] = 6;
-                    if(pieces[npos][apos-1]=='P' && pieces[npos+1][apos-1]=='-' && black_pawn1_move_no==move_no && black_pawn1_moved)
+                    if(pieces[npos][apos-1]=='P' && pieces[npos+1][apos-1]=='-' && black_pawn1_move_no==move_no && black_pawn1_moved_two)
                         places[npos + 1][apos - 1] = 6;
                     break;
                 case 2:
-                    if(pieces[npos][apos+1]=='P' && pieces[npos+1][apos+1]=='-' && black_pawn4_move_no==move_no && black_pawn4_moved)
+                    if(pieces[npos][apos+1]=='P' && pieces[npos+1][apos+1]=='-' && black_pawn4_move_no==move_no && black_pawn4_moved_two)
                         places[npos + 1][apos + 1] = 6;
-                    if(pieces[npos][apos-1]=='P' && pieces[npos+1][apos-1]=='-' && black_pawn2_move_no==move_no && black_pawn2_moved)
+                    if(pieces[npos][apos-1]=='P' && pieces[npos+1][apos-1]=='-' && black_pawn2_move_no==move_no && black_pawn2_moved_two)
                         places[npos + 1][apos - 1] = 6;
                     break;
                 case 3:
-                    if(pieces[npos][apos+1]=='P' && pieces[npos+1][apos+1]=='-' && black_pawn5_move_no==move_no && black_pawn5_moved)
+                    if(pieces[npos][apos+1]=='P' && pieces[npos+1][apos+1]=='-' && black_pawn5_move_no==move_no && black_pawn5_moved_two)
                         places[npos + 1][apos + 1] = 6;
-                    if(pieces[npos][apos-1]=='P' && pieces[npos+1][apos-1]=='-' && black_pawn3_move_no==move_no && black_pawn3_moved)
+                    if(pieces[npos][apos-1]=='P' && pieces[npos+1][apos-1]=='-' && black_pawn3_move_no==move_no && black_pawn3_moved_two)
                         places[npos + 1][apos - 1] = 6;
                     break;
                 case 4:
-                    if(pieces[npos][apos+1]=='P' && pieces[npos+1][apos+1]=='-' && black_pawn6_move_no==move_no && black_pawn6_moved)
+                    if(pieces[npos][apos+1]=='P' && pieces[npos+1][apos+1]=='-' && black_pawn6_move_no==move_no && black_pawn6_moved_two)
                         places[npos + 1][apos + 1] = 6;
-                    if(pieces[npos][apos-1]=='P' && pieces[npos+1][apos-1]=='-' && black_pawn4_move_no==move_no && black_pawn4_moved)
+                    if(pieces[npos][apos-1]=='P' && pieces[npos+1][apos-1]=='-' && black_pawn4_move_no==move_no && black_pawn4_moved_two)
                         places[npos + 1][apos - 1] = 6;
                     break;
                 case 5:
-                    if(pieces[npos][apos+1]=='P' && pieces[npos+1][apos+1]=='-' && black_pawn7_move_no==move_no && black_pawn7_moved)
+                    if(pieces[npos][apos+1]=='P' && pieces[npos+1][apos+1]=='-' && black_pawn7_move_no==move_no && black_pawn7_moved_two)
                         places[npos + 1][apos + 1] = 6;
-                    if(pieces[npos][apos-1]=='P' && pieces[npos+1][apos-1]=='-' && black_pawn5_move_no==move_no && black_pawn5_moved)
+                    if(pieces[npos][apos-1]=='P' && pieces[npos+1][apos-1]=='-' && black_pawn5_move_no==move_no && black_pawn5_moved_two)
                         places[npos + 1][apos - 1] = 6;
                     break;
                 case 6:
-                    if(pieces[npos][apos+1]=='P' && pieces[npos+1][apos+1]=='-' && black_pawn8_move_no==move_no && black_pawn8_moved)
+                    if(pieces[npos][apos+1]=='P' && pieces[npos+1][apos+1]=='-' && black_pawn8_move_no==move_no && black_pawn8_moved_two)
                         places[npos + 1][apos + 1] = 6;
-                    if(pieces[npos][apos-1]=='P' && pieces[npos+1][apos-1]=='-' && black_pawn6_move_no==move_no && black_pawn6_moved)
+                    if(pieces[npos][apos-1]=='P' && pieces[npos+1][apos-1]=='-' && black_pawn6_move_no==move_no && black_pawn6_moved_two)
                         places[npos + 1][apos - 1] = 6;
                     break;
                 case 7:
-                    if(pieces[npos][apos-1]=='P' && pieces[npos+1][apos-1]=='-' && black_pawn7_move_no==move_no && black_pawn7_moved)
+                    if(pieces[npos][apos-1]=='P' && pieces[npos+1][apos-1]=='-' && black_pawn7_move_no==move_no && black_pawn7_moved_two)
                         places[npos + 1][apos - 1] = 6;
                     break;
             }
         }
-
         draw_board();
     }
 
     //Black Pawn
-    public void bpawn(int npos, int apos)
+    public void bpawn(int npos, int apos, int[][] places)
     {
         //Normal Move
         if(pieces[npos-1][apos]=='-')
@@ -1075,53 +1091,94 @@ public class MainActivity extends AppCompatActivity {
             switch (apos)
             {
                 case 0:
-                    if(pieces[npos][apos+1]=='p' && pieces[npos-1][apos+1]=='-' && white_pawn2_move_no==move_no && white_pawn2_moved)
+                    if(pieces[npos][apos+1]=='p' && pieces[npos-1][apos+1]=='-' && white_pawn2_move_no==move_no && white_pawn2_moved_two)
                         places[npos - 1][apos + 1] = 6;
                     break;
                 case 1:
-                    if(pieces[npos][apos-1]=='p' && pieces[npos-1][apos-1]=='-' && white_pawn1_move_no==move_no && white_pawn1_moved)
+                    if(pieces[npos][apos-1]=='p' && pieces[npos-1][apos-1]=='-' && white_pawn1_move_no==move_no && white_pawn1_moved_two)
                         places[npos - 1][apos - 1] = 6;
-                    if(pieces[npos][apos+1]=='p' && pieces[npos-1][apos+1]=='-' && white_pawn3_move_no==move_no && white_pawn3_moved)
+                    if(pieces[npos][apos+1]=='p' && pieces[npos-1][apos+1]=='-' && white_pawn3_move_no==move_no && white_pawn3_moved_two)
                         places[npos - 1][apos + 1] = 6;
                     break;
                 case 2:
-                    if(pieces[npos][apos-1]=='p' && pieces[npos-1][apos-1]=='-' && white_pawn2_move_no==move_no && white_pawn2_moved)
+                    if(pieces[npos][apos-1]=='p' && pieces[npos-1][apos-1]=='-' && white_pawn2_move_no==move_no && white_pawn2_moved_two)
                         places[npos - 1][apos - 1] = 6;
-                    if(pieces[npos][apos+1]=='p' && pieces[npos-1][apos+1]=='-' && white_pawn4_move_no==move_no && white_pawn4_moved)
+                    if(pieces[npos][apos+1]=='p' && pieces[npos-1][apos+1]=='-' && white_pawn4_move_no==move_no && white_pawn4_moved_two)
                         places[npos - 1][apos + 1] = 6;
                     break;
                 case 3:
-                    if(pieces[npos][apos-1]=='p' && pieces[npos-1][apos-1]=='-' && white_pawn3_move_no==move_no && white_pawn3_moved)
+                    if(pieces[npos][apos-1]=='p' && pieces[npos-1][apos-1]=='-' && white_pawn3_move_no==move_no && white_pawn3_moved_two)
                         places[npos - 1][apos - 1] = 6;
-                    if(pieces[npos][apos+1]=='p' && pieces[npos-1][apos+1]=='-' && white_pawn5_move_no==move_no && white_pawn5_moved)
+                    if(pieces[npos][apos+1]=='p' && pieces[npos-1][apos+1]=='-' && white_pawn5_move_no==move_no && white_pawn5_moved_two)
                         places[npos - 1][apos + 1] = 6;
                     break;
                 case 4:
-                    if(pieces[npos][apos-1]=='p' && pieces[npos-1][apos-1]=='-' && white_pawn4_move_no==move_no && white_pawn4_moved)
+                    if(pieces[npos][apos-1]=='p' && pieces[npos-1][apos-1]=='-' && white_pawn4_move_no==move_no && white_pawn4_moved_two)
                         places[npos - 1][apos - 1] = 6;
-                    if(pieces[npos][apos+1]=='p' && pieces[npos-1][apos+1]=='-' && white_pawn6_move_no==move_no && white_pawn6_moved)
+                    if(pieces[npos][apos+1]=='p' && pieces[npos-1][apos+1]=='-' && white_pawn6_move_no==move_no && white_pawn6_moved_two)
                         places[npos - 1][apos + 1] = 6;
                     break;
                 case 5:
-                    if(pieces[npos][apos-1]=='p' && pieces[npos-1][apos-1]=='-' && white_pawn5_move_no==move_no && white_pawn5_moved)
+                    if(pieces[npos][apos-1]=='p' && pieces[npos-1][apos-1]=='-' && white_pawn5_move_no==move_no && white_pawn5_moved_two)
                         places[npos - 1][apos - 1] = 6;
-                    if(pieces[npos][apos+1]=='p' && pieces[npos-1][apos+1]=='-' && white_pawn7_move_no==move_no && white_pawn7_moved)
+                    if(pieces[npos][apos+1]=='p' && pieces[npos-1][apos+1]=='-' && white_pawn7_move_no==move_no && white_pawn7_moved_two)
                         places[npos - 1][apos + 1] = 6;
                     break;
                 case 6:
-                    if(pieces[npos][apos-1]=='p' && pieces[npos-1][apos-1]=='-' && white_pawn6_move_no==move_no && white_pawn6_moved)
+                    if(pieces[npos][apos-1]=='p' && pieces[npos-1][apos-1]=='-' && white_pawn6_move_no==move_no && white_pawn6_moved_two)
                         places[npos - 1][apos - 1] = 6;
-                    if(pieces[npos][apos+1]=='p' && pieces[npos-1][apos+1]=='-' && white_pawn8_move_no==move_no && white_pawn8_moved)
+                    if(pieces[npos][apos+1]=='p' && pieces[npos-1][apos+1]=='-' && white_pawn8_move_no==move_no && white_pawn8_moved_two)
                         places[npos - 1][apos + 1] = 6;
                     break;
                 case 7:
-                    if(pieces[npos][apos-1]=='p' && pieces[npos-1][apos-1]=='-' && white_pawn7_move_no==move_no && white_pawn7_moved)
+                    if(pieces[npos][apos-1]=='p' && pieces[npos-1][apos-1]=='-' && white_pawn7_move_no==move_no && white_pawn7_moved_two)
                         places[npos - 1][apos - 1] = 6;
                     break;
             }
         }
 
         draw_board();
+    }
+
+    @SuppressLint("SetTextI18n")
+    public void checkAttacked()
+    {
+        //Resetting the check places
+        for (int i = 0; i < 8; i++)
+            for (int j = 0; j < 8; j++) {
+                white_check_places[i][j] = 0;
+                black_check_places[i][j] = 0;
+            }
+
+        //Checking for all pieces
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (pieces[i][j] == 'P')
+                    bpawn(i, j, white_check_places);
+                else if (pieces[i][j] == 'Q')
+                    bqueen(i, j, white_check_places);
+                else if (pieces[i][j] == 'R')
+                    brook(i, j, white_check_places);
+                else if (pieces[i][j] == 'B')
+                    bbishop(i, j, white_check_places);
+                else if (pieces[i][j] == 'N')
+                    bknight(i, j, white_check_places);
+                else if (pieces[i][j] == 'K')
+                    bking(i, j, white_check_places);
+                else if (pieces[i][j] == 'p')
+                    wpawn(i, j, black_check_places);
+                else if (pieces[i][j] == 'q')
+                    wqueen(i, j, black_check_places);
+                else if (pieces[i][j] == 'r')
+                    wrook(i, j, black_check_places);
+                else if (pieces[i][j] == 'b')
+                    wbishop(i, j, black_check_places);
+                else if (pieces[i][j] == 'n')
+                    wknight(i, j, black_check_places);
+                else if (pieces[i][j] == 'k')
+                    wking(i, j, black_check_places);
+            }
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -1216,9 +1273,6 @@ public class MainActivity extends AppCompatActivity {
         f1p.setImageResource(pieceHighlight(places[0][5]));f2p.setImageResource(pieceHighlight(places[1][5]));f3p.setImageResource(pieceHighlight(places[2][5]));f4p.setImageResource(pieceHighlight(places[3][5]));f5p.setImageResource(pieceHighlight(places[4][5]));f6p.setImageResource(pieceHighlight(places[5][5]));f7p.setImageResource(pieceHighlight(places[6][5]));f8p.setImageResource(pieceHighlight(places[7][5]));
         g1p.setImageResource(pieceHighlight(places[0][6]));g2p.setImageResource(pieceHighlight(places[1][6]));g3p.setImageResource(pieceHighlight(places[2][6]));g4p.setImageResource(pieceHighlight(places[3][6]));g5p.setImageResource(pieceHighlight(places[4][6]));g6p.setImageResource(pieceHighlight(places[5][6]));g7p.setImageResource(pieceHighlight(places[6][6]));g8p.setImageResource(pieceHighlight(places[7][6]));
         h1p.setImageResource(pieceHighlight(places[0][7]));h2p.setImageResource(pieceHighlight(places[1][7]));h3p.setImageResource(pieceHighlight(places[2][7]));h4p.setImageResource(pieceHighlight(places[3][7]));h5p.setImageResource(pieceHighlight(places[4][7]));h6p.setImageResource(pieceHighlight(places[5][7]));h7p.setImageResource(pieceHighlight(places[6][7]));h8p.setImageResource(pieceHighlight(places[7][7]));
-
-
-
 
 
     }
@@ -1337,37 +1391,37 @@ public class MainActivity extends AppCompatActivity {
             //Resetting en passant variables
             {
                 if(move_no-2==white_pawn1_move_no)
-                    white_pawn1_moved=false;
+                    white_pawn1_moved_two=false;
                 if(move_no-2==white_pawn2_move_no)
-                    white_pawn2_moved=false;
+                    white_pawn2_moved_two=false;
                 if(move_no-2==white_pawn3_move_no)
-                    white_pawn3_moved=false;
+                    white_pawn3_moved_two=false;
                 if(move_no-2==white_pawn4_move_no)
-                    white_pawn4_moved=false;
+                    white_pawn4_moved_two=false;
                 if(move_no-2==white_pawn5_move_no)
-                    white_pawn5_moved=false;
+                    white_pawn5_moved_two=false;
                 if(move_no-2==white_pawn6_move_no)
-                    white_pawn6_moved=false;
+                    white_pawn6_moved_two=false;
                 if(move_no-2==white_pawn7_move_no)
-                    white_pawn7_moved=false;
+                    white_pawn7_moved_two=false;
                 if(move_no-2==white_pawn8_move_no)
-                    white_pawn8_moved=false;
+                    white_pawn8_moved_two=false;
                 if(move_no-2==black_pawn1_move_no)
-                    black_pawn1_moved=false;
+                    black_pawn1_moved_two=false;
                 if(move_no-2==black_pawn2_move_no)
-                    black_pawn2_moved=false;
+                    black_pawn2_moved_two=false;
                 if(move_no-2==black_pawn3_move_no)
-                    black_pawn3_moved=false;
+                    black_pawn3_moved_two=false;
                 if(move_no-2==black_pawn4_move_no)
-                    black_pawn4_moved=false;
+                    black_pawn4_moved_two=false;
                 if(move_no-2==black_pawn5_move_no)
-                    black_pawn5_moved=false;
+                    black_pawn5_moved_two=false;
                 if(move_no-2==black_pawn6_move_no)
-                    black_pawn6_moved=false;
+                    black_pawn6_moved_two=false;
                 if(move_no-2==black_pawn7_move_no)
-                    black_pawn7_moved=false;
+                    black_pawn7_moved_two=false;
                 if(move_no-2==black_pawn8_move_no)
-                    black_pawn8_moved=false;
+                    black_pawn8_moved_two=false;
             }
 
 
@@ -1417,37 +1471,37 @@ public class MainActivity extends AppCompatActivity {
             //Reverting en passant variables
             {
                 if(move_no+1==white_pawn1_move_no)
-                    white_pawn1_moved=true;
+                    white_pawn1_moved_two=true;
                 if(move_no+1==white_pawn2_move_no)
-                    white_pawn2_moved=true;
+                    white_pawn2_moved_two=true;
                 if(move_no+1==white_pawn3_move_no)
-                    white_pawn3_moved=true;
+                    white_pawn3_moved_two=true;
                 if(move_no+1==white_pawn4_move_no)
-                    white_pawn4_moved=true;
+                    white_pawn4_moved_two=true;
                 if(move_no+1==white_pawn5_move_no)
-                    white_pawn5_moved=true;
+                    white_pawn5_moved_two=true;
                 if(move_no+1==white_pawn6_move_no)
-                    white_pawn6_moved=true;
+                    white_pawn6_moved_two=true;
                 if(move_no+1==white_pawn7_move_no)
-                    white_pawn7_moved=true;
+                    white_pawn7_moved_two=true;
                 if(move_no+1==white_pawn8_move_no)
-                    white_pawn8_moved=true;
+                    white_pawn8_moved_two=true;
                 if(move_no+1==black_pawn1_move_no)
-                    black_pawn1_moved=true;
+                    black_pawn1_moved_two=true;
                 if(move_no+1==black_pawn2_move_no)
-                    black_pawn2_moved=true;
+                    black_pawn2_moved_two=true;
                 if(move_no+1==black_pawn3_move_no)
-                    black_pawn3_moved=true;
+                    black_pawn3_moved_two=true;
                 if(move_no+1==black_pawn4_move_no)
-                    black_pawn4_moved=true;
+                    black_pawn4_moved_two=true;
                 if(move_no+1==black_pawn5_move_no)
-                    black_pawn5_moved=true;
+                    black_pawn5_moved_two=true;
                 if(move_no+1==black_pawn6_move_no)
-                    black_pawn6_moved=true;
+                    black_pawn6_moved_two=true;
                 if(move_no+1==black_pawn7_move_no)
-                    black_pawn7_moved=true;
+                    black_pawn7_moved_two=true;
                 if(move_no+1==black_pawn8_move_no)
-                    black_pawn8_moved=true;
+                    black_pawn8_moved_two=true;
             }
 
 
@@ -1599,38 +1653,38 @@ public class MainActivity extends AppCompatActivity {
         black_rook2_move_no=-1;
 
         //En Passant Variables Reset
-        black_pawn1_moved=false;
+        black_pawn1_moved_two=false;
         black_pawn1_move_no=-1;
-        black_pawn2_moved=false;
+        black_pawn2_moved_two=false;
         black_pawn2_move_no=-1;
-        black_pawn3_moved=false;
+        black_pawn3_moved_two=false;
         black_pawn3_move_no=-1;
-        black_pawn4_moved=false;
+        black_pawn4_moved_two=false;
         black_pawn4_move_no=-1;
-        black_pawn5_moved=false;
+        black_pawn5_moved_two=false;
         black_pawn5_move_no=-1;
-        black_pawn6_moved=false;
+        black_pawn6_moved_two=false;
         black_pawn6_move_no=-1;
-        black_pawn7_moved=false;
+        black_pawn7_moved_two=false;
         black_pawn7_move_no=-1;
-        black_pawn8_moved=false;
+        black_pawn8_moved_two=false;
         black_pawn8_move_no=-1;
 
-        white_pawn1_moved=false;
+        white_pawn1_moved_two=false;
         white_pawn1_move_no=-1;
-        white_pawn2_moved=false;
+        white_pawn2_moved_two=false;
         white_pawn2_move_no=-1;
-        white_pawn3_moved=false;
+        white_pawn3_moved_two=false;
         white_pawn3_move_no=-1;
-        white_pawn4_moved=false;
+        white_pawn4_moved_two=false;
         white_pawn4_move_no=-1;
-        white_pawn5_moved=false;
+        white_pawn5_moved_two=false;
         white_pawn5_move_no=-1;
-        white_pawn6_moved=false;
+        white_pawn6_moved_two=false;
         white_pawn6_move_no=-1;
-        white_pawn7_moved=false;
+        white_pawn7_moved_two=false;
         white_pawn7_move_no=-1;
-        white_pawn8_moved=false;
+        white_pawn8_moved_two=false;
         white_pawn8_move_no=-1;
     }
 }

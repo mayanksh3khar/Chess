@@ -14,7 +14,7 @@ Also, the game is not optimized for tablets.
 
 ## Features to Implement
 
-Check Alert/Restrict
+Check Alert
 
 Checkmate
 
