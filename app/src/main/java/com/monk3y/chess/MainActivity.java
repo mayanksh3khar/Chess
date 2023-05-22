@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
     //Check Places
     int[][] white_check_places = new int[8][8];
     int[][] black_check_places = new int[8][8];
+    char[][] temp_pieces = new char[8][8];
 
 
     //TODO:Declare variables for Check Alert, Checkmate, Draw by (Stalemate, 50/75 Move Rule, 3 Fold Repetition, Insufficient Material)
@@ -113,9 +114,6 @@ public class MainActivity extends AppCompatActivity {
         ImageView show_piece = findViewById(R.id.show_selected_piece);
         int apos,npos;
         String position = img.getTag().toString();
-
-        //Invoking checkAttacked() to update the check for all attacks
-        checkAttacked();
 
 
         //If piece is not selected
@@ -218,8 +216,8 @@ public class MainActivity extends AppCompatActivity {
             {
 
                 reset_places();
-                selected_piece='-';
                 piece_selected=false;
+                selected_piece='-';
                 show_piece.setImageResource(R.drawable.blank);
                 return;
             }
@@ -250,6 +248,7 @@ public class MainActivity extends AppCompatActivity {
                 show_piece.setImageResource(R.drawable.blank);
                 draw_board();
                 piece_selected=false;
+                selected_piece='-';
 
 
                 //Storing move
@@ -320,6 +319,7 @@ public class MainActivity extends AppCompatActivity {
                 show_piece.setImageResource(R.drawable.blank);
                 draw_board();
                 piece_selected = false;
+                selected_piece='-';
             }
 
             //En Passant Move
@@ -345,6 +345,7 @@ public class MainActivity extends AppCompatActivity {
                 show_piece.setImageResource(R.drawable.blank);
                 draw_board();
                 piece_selected = false;
+                selected_piece='-';
             }
 
 
@@ -461,10 +462,13 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
+            //Checking if the king is in check
+
             //Finally
             show_piece.setImageResource(R.drawable.blank);
             draw_board();
             piece_selected=false;
+            selected_piece='-';
 
             //Storing move
             storeBoard(++move_no);
@@ -492,19 +496,19 @@ public class MainActivity extends AppCompatActivity {
         switch (selected_piece)
         {
 
-            case 'r': wrook(npos,apos,places);break;
-            case 'n': wknight(npos,apos,places);break;
-            case 'b': wbishop(npos,apos,places);break;
-            case 'q': wqueen(npos,apos,places);break;
-            case 'k': wking(npos,apos,places);break;
-            case 'p': wpawn(npos,apos,places);break;
-            //
-            case 'R': brook(npos,apos,places);break;
-            case 'N': bknight(npos,apos,places);break;
-            case 'B': bbishop(npos,apos,places);break;
-            case 'Q': bqueen(npos,apos,places);break;
-            case 'K': bking(npos,apos,places);break;
-            case 'P': bpawn(npos,apos,places);break;
+            case 'r': wrook(npos,apos,places,pieces);break;
+            case 'n': wknight(npos,apos,places,pieces);break;
+            case 'b': wbishop(npos,apos,places,pieces);break;
+            case 'q': wqueen(npos,apos,places,pieces);break;
+            case 'k': wking(npos,apos,places,pieces);break;
+            case 'p': wpawn(npos,apos,places,pieces);break;
+
+            case 'R': brook(npos,apos,places,pieces);break;
+            case 'N': bknight(npos,apos,places,pieces);break;
+            case 'B': bbishop(npos,apos,places,pieces);break;
+            case 'Q': bqueen(npos,apos,places,pieces);break;
+            case 'K': bking(npos,apos,places,pieces);break;
+            case 'P': bpawn(npos,apos,places,pieces);break;
             default:  break;
 
         }
@@ -515,302 +519,317 @@ public class MainActivity extends AppCompatActivity {
 
     //Rook
     //White Rook
-    public void wrook(int npos,int apos, int[][] places)
+    public void wrook(int npos,int apos, int[][] places, char[][] pieces)
     {
-        for(int i=1;i<=7;i++)
+
+        if(!white_check)
         {
-            if(npos+i<=7 && (pieces[npos+i][apos]=='-' || pieces[npos+i][apos]>'A' && pieces[npos+i][apos]<'Z')) {
-                places[npos + i][apos] = 2;
-                if(pieces[npos+i][apos]>'A' && pieces[npos+i][apos]<'Z') {
-                    places[npos + i][apos] = 3;
+            for (int i = 1; i <= 7; i++) {
+                if (npos + i <= 7 && (pieces[npos + i][apos] == '-' || pieces[npos + i][apos] > 'A' && pieces[npos + i][apos] < 'Z')) {
+                    places[npos + i][apos] = 2;
+                    if (pieces[npos + i][apos] > 'A' && pieces[npos + i][apos] < 'Z') {
+                        places[npos + i][apos] = 3;
+                        break;
+                    }
+                } else
                     break;
-                }
             }
-            else
-                break;
-        }
-        for(int i=1;i<=7;i++)
-        {
-            if(npos-i>=0 && (pieces[npos-i][apos]=='-' || pieces[npos-i][apos]>'A' && pieces[npos-i][apos]<'Z')) {
-                places[npos - i][apos] = 2;
-                if(pieces[npos-i][apos]>'A' && pieces[npos-i][apos]<'Z') {
-                    places[npos - i][apos] = 3;
+            for (int i = 1; i <= 7; i++) {
+                if (npos - i >= 0 && (pieces[npos - i][apos] == '-' || pieces[npos - i][apos] > 'A' && pieces[npos - i][apos] < 'Z')) {
+                    places[npos - i][apos] = 2;
+                    if (pieces[npos - i][apos] > 'A' && pieces[npos - i][apos] < 'Z') {
+                        places[npos - i][apos] = 3;
+                        break;
+                    }
+                } else
                     break;
-                }
             }
-            else
-                break;
-        }
-        for(int i=1;i<=7;i++)
-        {
-            if(apos+i<=7 && (pieces[npos][apos+i]=='-' || pieces[npos][apos+i]>'A' && pieces[npos][apos+i]<'Z')) {
-                places[npos][apos + i] = 2;
-                if(pieces[npos][apos+i]>'A' && pieces[npos][apos+i]<'Z') {
-                    places[npos][apos + i] = 3;
+            for (int i = 1; i <= 7; i++) {
+                if (apos + i <= 7 && (pieces[npos][apos + i] == '-' || pieces[npos][apos + i] > 'A' && pieces[npos][apos + i] < 'Z')) {
+                    places[npos][apos + i] = 2;
+                    if (pieces[npos][apos + i] > 'A' && pieces[npos][apos + i] < 'Z') {
+                        places[npos][apos + i] = 3;
+                        break;
+                    }
+                } else
                     break;
-                }
             }
-            else
-                break;
-        }
-        for(int i=1;i<=7;i++)
-        {
-            if(apos-i>=0 && (pieces[npos][apos-i]=='-' || pieces[npos][apos-i]>'A' && pieces[npos][apos-i]<'Z')) {
-                places[npos][apos - i] = 2;
-                if(pieces[npos][apos-i]>'A' && pieces[npos][apos-i]<'Z') {
-                    places[npos][apos - i] = 3;
+            for (int i = 1; i <= 7; i++) {
+                if (apos - i >= 0 && (pieces[npos][apos - i] == '-' || pieces[npos][apos - i] > 'A' && pieces[npos][apos - i] < 'Z')) {
+                    places[npos][apos - i] = 2;
+                    if (pieces[npos][apos - i] > 'A' && pieces[npos][apos - i] < 'Z') {
+                        places[npos][apos - i] = 3;
+                        break;
+                    }
+                } else
                     break;
-                }
             }
-            else
-                break;
         }
     }
 
     //Black Rook
-    public void brook(int npos, int apos, int[][] places)
+    public void brook(int npos, int apos, int[][] places, char[][] pieces)
     {
-        for(int i=1;i<=7;i++)
+        if(!black_check)
         {
-            if(npos+i<=7 && (pieces[npos+i][apos]=='-' || pieces[npos+i][apos]>'a' && pieces[npos+i][apos]<'z')) {
-                places[npos + i][apos] = 2;
-                if(pieces[npos+i][apos]>'a' && pieces[npos+i][apos]<'z') {
-                    places[npos + i][apos] = 3;
+            for (int i = 1; i <= 7; i++) {
+                if (npos + i <= 7 && (pieces[npos + i][apos] == '-' || pieces[npos + i][apos] > 'a' && pieces[npos + i][apos] < 'z')) {
+                    places[npos + i][apos] = 2;
+                    if (pieces[npos + i][apos] > 'a' && pieces[npos + i][apos] < 'z') {
+                        places[npos + i][apos] = 3;
+                        break;
+                    }
+                } else
                     break;
-                }
             }
-            else
-                break;
-        }
-        for(int i=1;i<=7;i++)
-        {
-            if(npos-i>=0 && (pieces[npos-i][apos]=='-' || pieces[npos-i][apos]>'a' && pieces[npos-i][apos]<'z')) {
-                places[npos - i][apos] = 2;
-                if(pieces[npos-i][apos]>'a' && pieces[npos-i][apos]<'z') {
-                    places[npos - i][apos] = 3;
+            for (int i = 1; i <= 7; i++) {
+                if (npos - i >= 0 && (pieces[npos - i][apos] == '-' || pieces[npos - i][apos] > 'a' && pieces[npos - i][apos] < 'z')) {
+                    places[npos - i][apos] = 2;
+                    if (pieces[npos - i][apos] > 'a' && pieces[npos - i][apos] < 'z') {
+                        places[npos - i][apos] = 3;
+                        break;
+                    }
+                } else
                     break;
-                }
             }
-            else
-                break;
-        }
-        for(int i=1;i<=7;i++)
-        {
-            if(apos+i<=7 && (pieces[npos][apos+i]=='-' || pieces[npos][apos+i]>'a' && pieces[npos][apos+i]<'z')) {
-                places[npos][apos + i] = 2;
-                if(pieces[npos][apos+i]>'a' && pieces[npos][apos+i]<'z') {
-                    places[npos][apos + i] = 3;
+            for (int i = 1; i <= 7; i++) {
+                if (apos + i <= 7 && (pieces[npos][apos + i] == '-' || pieces[npos][apos + i] > 'a' && pieces[npos][apos + i] < 'z')) {
+                    places[npos][apos + i] = 2;
+                    if (pieces[npos][apos + i] > 'a' && pieces[npos][apos + i] < 'z') {
+                        places[npos][apos + i] = 3;
+                        break;
+                    }
+                } else
                     break;
-                }
             }
-            else
-                break;
-        }
-        for(int i=1;i<=7;i++)
-        {
-            if(apos-i>=0 && (pieces[npos][apos-i]=='-' || pieces[npos][apos-i]>'a' && pieces[npos][apos-i]<'z')) {
-                places[npos][apos - i] = 2;
-                if(pieces[npos][apos-i]>'a' && pieces[npos][apos-i]<'z') {
-                    places[npos][apos - i] = 3;
+            for (int i = 1; i <= 7; i++) {
+                if (apos - i >= 0 && (pieces[npos][apos - i] == '-' || pieces[npos][apos - i] > 'a' && pieces[npos][apos - i] < 'z')) {
+                    places[npos][apos - i] = 2;
+                    if (pieces[npos][apos - i] > 'a' && pieces[npos][apos - i] < 'z') {
+                        places[npos][apos - i] = 3;
+                        break;
+                    }
+                } else
                     break;
-                }
             }
-            else
-                break;
         }
     }
 
 
     //Knight
     //White Knight
-    public void wknight(int npos,int apos, int[][] places)
+    public void wknight(int npos,int apos, int[][] places, char[][] pieces)
     {
-        if (npos>=2 && apos>=1 && (pieces[npos-2][apos-1]=='-' || pieces[npos-2][apos-1]>'A' && pieces[npos-2][apos-1]<'Z')) {
-            places[npos - 2][apos - 1] = 2;
-            if (pieces[npos - 2][apos - 1] > 'A' && pieces[npos - 2][apos - 1] < 'Z')
-                places[npos - 2][apos - 1] = 3;
-        }
-        if (npos>=2 && apos<=6 && (pieces[npos-2][apos+1]=='-' || pieces[npos-2][apos+1]>'A' && pieces[npos-2][apos+1]<'Z')) {
-            places[npos - 2][apos + 1] = 2;
-            if (pieces[npos - 2][apos + 1] > 'A' && pieces[npos - 2][apos + 1] < 'Z')
-                places[npos - 2][apos + 1] = 3;
-        }
-        if (npos>=1 && apos>=2 && (pieces[npos-1][apos-2]=='-' || pieces[npos-1][apos-2]>'A' && pieces[npos-1][apos-2]<'Z')) {
-            places[npos - 1][apos - 2] = 2;
-            if (pieces[npos - 1][apos - 2] > 'A' && pieces[npos - 1][apos - 2] < 'Z')
-                places[npos - 1][apos - 2] = 3;
-        }
-        if (npos>=1 && apos<=5 && (pieces[npos-1][apos+2]=='-' || pieces[npos-1][apos+2]>'A' && pieces[npos-1][apos+2]<'Z')) {
-            places[npos - 1][apos + 2] = 2;
-            if (pieces[npos - 1][apos + 2] > 'A' && pieces[npos - 1][apos + 2] < 'Z')
-                places[npos - 1][apos + 2] = 3;
-        }
-        if (npos<=5 && apos<=6 && (pieces[npos+2][apos+1]=='-' || pieces[npos+2][apos+1]>'A' && pieces[npos+2][apos+1]<'Z')) {
-            places[npos + 2][apos + 1] = 2;
-            if (pieces[npos + 2][apos + 1] > 'A' && pieces[npos + 2][apos + 1] < 'Z')
-                places[npos + 2][apos + 1] = 3;
-        }
-        if (npos<=5 && apos>=1 && (pieces[npos+2][apos-1]=='-' || pieces[npos+2][apos-1]>'A' && pieces[npos+2][apos-1]<'Z')) {
-            places[npos + 2][apos - 1] = 2;
-            if (pieces[npos + 2][apos - 1] > 'A' && pieces[npos + 2][apos - 1] < 'Z')
-                places[npos + 2][apos - 1] = 3;
-        }
-        if (npos<=6 && apos<=5 && (pieces[npos+1][apos+2]=='-' || pieces[npos+1][apos+2]>'A' && pieces[npos+1][apos+2]<'Z')) {
-            places[npos + 1][apos + 2] = 2;
-            if (pieces[npos + 1][apos + 2] > 'A' && pieces[npos + 1][apos + 2] < 'Z')
-                places[npos + 1][apos + 2] = 3;
-        }
-        if (npos<=6 && apos>=2 && (pieces[npos+1][apos-2]=='-' || pieces[npos+1][apos-2]>'A' && pieces[npos+1][apos-2]<'Z')) {
-            places[npos + 1][apos - 2] = 2;
-            if (pieces[npos + 1][apos - 2] > 'A' && pieces[npos + 1][apos - 2] < 'Z')
-                places[npos + 1][apos - 2] = 3;
+        if(!white_check)
+        {
+            if (npos >= 2 && apos >= 1 && (pieces[npos - 2][apos - 1] == '-' || pieces[npos - 2][apos - 1] > 'A' && pieces[npos - 2][apos - 1] < 'Z')) {
+                places[npos - 2][apos - 1] = 2;
+                if (pieces[npos - 2][apos - 1] > 'A' && pieces[npos - 2][apos - 1] < 'Z')
+                    places[npos - 2][apos - 1] = 3;
+            }
+            if (npos >= 2 && apos <= 6 && (pieces[npos - 2][apos + 1] == '-' || pieces[npos - 2][apos + 1] > 'A' && pieces[npos - 2][apos + 1] < 'Z')) {
+                places[npos - 2][apos + 1] = 2;
+                if (pieces[npos - 2][apos + 1] > 'A' && pieces[npos - 2][apos + 1] < 'Z')
+                    places[npos - 2][apos + 1] = 3;
+            }
+            if (npos >= 1 && apos >= 2 && (pieces[npos - 1][apos - 2] == '-' || pieces[npos - 1][apos - 2] > 'A' && pieces[npos - 1][apos - 2] < 'Z')) {
+                places[npos - 1][apos - 2] = 2;
+                if (pieces[npos - 1][apos - 2] > 'A' && pieces[npos - 1][apos - 2] < 'Z')
+                    places[npos - 1][apos - 2] = 3;
+            }
+            if (npos >= 1 && apos <= 5 && (pieces[npos - 1][apos + 2] == '-' || pieces[npos - 1][apos + 2] > 'A' && pieces[npos - 1][apos + 2] < 'Z')) {
+                places[npos - 1][apos + 2] = 2;
+                if (pieces[npos - 1][apos + 2] > 'A' && pieces[npos - 1][apos + 2] < 'Z')
+                    places[npos - 1][apos + 2] = 3;
+            }
+            if (npos <= 5 && apos <= 6 && (pieces[npos + 2][apos + 1] == '-' || pieces[npos + 2][apos + 1] > 'A' && pieces[npos + 2][apos + 1] < 'Z')) {
+                places[npos + 2][apos + 1] = 2;
+                if (pieces[npos + 2][apos + 1] > 'A' && pieces[npos + 2][apos + 1] < 'Z')
+                    places[npos + 2][apos + 1] = 3;
+            }
+            if (npos <= 5 && apos >= 1 && (pieces[npos + 2][apos - 1] == '-' || pieces[npos + 2][apos - 1] > 'A' && pieces[npos + 2][apos - 1] < 'Z')) {
+                places[npos + 2][apos - 1] = 2;
+                if (pieces[npos + 2][apos - 1] > 'A' && pieces[npos + 2][apos - 1] < 'Z')
+                    places[npos + 2][apos - 1] = 3;
+            }
+            if (npos <= 6 && apos <= 5 && (pieces[npos + 1][apos + 2] == '-' || pieces[npos + 1][apos + 2] > 'A' && pieces[npos + 1][apos + 2] < 'Z')) {
+                places[npos + 1][apos + 2] = 2;
+                if (pieces[npos + 1][apos + 2] > 'A' && pieces[npos + 1][apos + 2] < 'Z')
+                    places[npos + 1][apos + 2] = 3;
+            }
+            if (npos <= 6 && apos >= 2 && (pieces[npos + 1][apos - 2] == '-' || pieces[npos + 1][apos - 2] > 'A' && pieces[npos + 1][apos - 2] < 'Z')) {
+                places[npos + 1][apos - 2] = 2;
+                if (pieces[npos + 1][apos - 2] > 'A' && pieces[npos + 1][apos - 2] < 'Z')
+                    places[npos + 1][apos - 2] = 3;
+            }
         }
     }
 
     //Black Knight
-    public void bknight(int npos,int apos, int[][] places)
+    public void bknight(int npos,int apos, int[][] places, char[][] pieces)
     {
-        if (npos>=2 && apos>=1 && (pieces[npos-2][apos-1]=='-' || pieces[npos-2][apos-1]>'a' && pieces[npos-2][apos-1]<'z')) {
-            places[npos - 2][apos - 1] = 2;
-            if (pieces[npos - 2][apos - 1] > 'a' && pieces[npos - 2][apos - 1] < 'z')
-                places[npos - 2][apos - 1] = 3;
-        }
-        if (npos>=2 && apos<=6 && (pieces[npos-2][apos+1]=='-' || pieces[npos-2][apos+1]>'a' && pieces[npos-2][apos+1]<'z')) {
-            places[npos - 2][apos + 1] = 2;
-            if (pieces[npos - 2][apos + 1] > 'a' && pieces[npos - 2][apos + 1] < 'z')
-                places[npos - 2][apos + 1] = 3;
-        }
-        if (npos>=1 && apos>=2 && (pieces[npos-1][apos-2]=='-' || pieces[npos-1][apos-2]>'a' && pieces[npos-1][apos-2]<'z')) {
-            places[npos - 1][apos - 2] = 2;
-            if (pieces[npos - 1][apos - 2] > 'a' && pieces[npos - 1][apos - 2] < 'z')
-                places[npos - 1][apos - 2] = 3;
-        }
-        if (npos>=1 && apos<=5 && (pieces[npos-1][apos+2]=='-' || pieces[npos-1][apos+2]>'a' && pieces[npos-1][apos+2]<'z')) {
-            places[npos - 1][apos + 2] = 2;
-            if (pieces[npos - 1][apos + 2] > 'a' && pieces[npos - 1][apos + 2] < 'z')
-                places[npos - 1][apos + 2] = 3;
-        }
-        if (npos<=5 && apos<=6 && (pieces[npos+2][apos+1]=='-' || pieces[npos+2][apos+1]>'a' && pieces[npos+2][apos+1]<'z')) {
-            places[npos + 2][apos + 1] = 2;
-            if (pieces[npos + 2][apos + 1] > 'a' && pieces[npos + 2][apos + 1] < 'z')
-                places[npos + 2][apos + 1] = 3;
-        }
-        if (npos<=5 && apos>=1 && (pieces[npos+2][apos-1]=='-' || pieces[npos+2][apos-1]>'a' && pieces[npos+2][apos-1]<'z')) {
-            places[npos + 2][apos - 1] = 2;
-            if (pieces[npos + 2][apos - 1] > 'a' && pieces[npos + 2][apos - 1] < 'z')
-                places[npos + 2][apos - 1] = 3;
-        }
-        if (npos<=6 && apos<=5 && (pieces[npos+1][apos+2]=='-' || pieces[npos+1][apos+2]>'a' && pieces[npos+1][apos+2]<'z')) {
-            places[npos + 1][apos + 2] = 2;
-            if (pieces[npos + 1][apos + 2] > 'a' && pieces[npos + 1][apos + 2] < 'z')
-                places[npos + 1][apos + 2] = 3;
-        }
-        if (npos<=6 && apos>=2 && (pieces[npos+1][apos-2]=='-' || pieces[npos+1][apos-2]>'a' && pieces[npos+1][apos-2]<'z')) {
-            places[npos + 1][apos - 2] = 2;
-            if (pieces[npos + 1][apos - 2] > 'a' && pieces[npos + 1][apos - 2] < 'z')
-                places[npos + 1][apos - 2] = 3;
+        if(!black_check)
+        {
+            if (npos >= 2 && apos >= 1 && (pieces[npos - 2][apos - 1] == '-' || pieces[npos - 2][apos - 1] > 'a' && pieces[npos - 2][apos - 1] < 'z')) {
+                places[npos - 2][apos - 1] = 2;
+                if (pieces[npos - 2][apos - 1] > 'a' && pieces[npos - 2][apos - 1] < 'z')
+                    places[npos - 2][apos - 1] = 3;
+            }
+            if (npos >= 2 && apos <= 6 && (pieces[npos - 2][apos + 1] == '-' || pieces[npos - 2][apos + 1] > 'a' && pieces[npos - 2][apos + 1] < 'z')) {
+                places[npos - 2][apos + 1] = 2;
+                if (pieces[npos - 2][apos + 1] > 'a' && pieces[npos - 2][apos + 1] < 'z')
+                    places[npos - 2][apos + 1] = 3;
+            }
+            if (npos >= 1 && apos >= 2 && (pieces[npos - 1][apos - 2] == '-' || pieces[npos - 1][apos - 2] > 'a' && pieces[npos - 1][apos - 2] < 'z')) {
+                places[npos - 1][apos - 2] = 2;
+                if (pieces[npos - 1][apos - 2] > 'a' && pieces[npos - 1][apos - 2] < 'z')
+                    places[npos - 1][apos - 2] = 3;
+            }
+            if (npos >= 1 && apos <= 5 && (pieces[npos - 1][apos + 2] == '-' || pieces[npos - 1][apos + 2] > 'a' && pieces[npos - 1][apos + 2] < 'z')) {
+                places[npos - 1][apos + 2] = 2;
+                if (pieces[npos - 1][apos + 2] > 'a' && pieces[npos - 1][apos + 2] < 'z')
+                    places[npos - 1][apos + 2] = 3;
+            }
+            if (npos <= 5 && apos <= 6 && (pieces[npos + 2][apos + 1] == '-' || pieces[npos + 2][apos + 1] > 'a' && pieces[npos + 2][apos + 1] < 'z')) {
+                places[npos + 2][apos + 1] = 2;
+                if (pieces[npos + 2][apos + 1] > 'a' && pieces[npos + 2][apos + 1] < 'z')
+                    places[npos + 2][apos + 1] = 3;
+            }
+            if (npos <= 5 && apos >= 1 && (pieces[npos + 2][apos - 1] == '-' || pieces[npos + 2][apos - 1] > 'a' && pieces[npos + 2][apos - 1] < 'z')) {
+                places[npos + 2][apos - 1] = 2;
+                if (pieces[npos + 2][apos - 1] > 'a' && pieces[npos + 2][apos - 1] < 'z')
+                    places[npos + 2][apos - 1] = 3;
+            }
+            if (npos <= 6 && apos <= 5 && (pieces[npos + 1][apos + 2] == '-' || pieces[npos + 1][apos + 2] > 'a' && pieces[npos + 1][apos + 2] < 'z')) {
+                places[npos + 1][apos + 2] = 2;
+                if (pieces[npos + 1][apos + 2] > 'a' && pieces[npos + 1][apos + 2] < 'z')
+                    places[npos + 1][apos + 2] = 3;
+            }
+            if (npos <= 6 && apos >= 2 && (pieces[npos + 1][apos - 2] == '-' || pieces[npos + 1][apos - 2] > 'a' && pieces[npos + 1][apos - 2] < 'z')) {
+                places[npos + 1][apos - 2] = 2;
+                if (pieces[npos + 1][apos - 2] > 'a' && pieces[npos + 1][apos - 2] < 'z')
+                    places[npos + 1][apos - 2] = 3;
+            }
         }
     }
 
 
     //Bishop
     //White Bishop
-    public void wbishop(int npos,int apos, int[][] places)
+    public void wbishop(int npos,int apos, int[][] places, char[][] pieces)
     {
-        int i,j;
-        i=npos+1;j=apos+1;
-        while(i<=7 && j<=7 && pieces[i][j]=='-')
+        if(!white_check)
         {
-            places[i][j]=2;
-            i++;j++;
-        }
-        if(i<=7 && j<=7 && pieces[i][j]>'A' && pieces[i][j]<'Z')
-            places[i][j]=3;
+            int i, j;
+            i = npos + 1;
+            j = apos + 1;
+            while (i <= 7 && j <= 7 && pieces[i][j] == '-') {
+                places[i][j] = 2;
+                i++;
+                j++;
+            }
+            if (i <= 7 && j <= 7 && pieces[i][j] > 'A' && pieces[i][j] < 'Z')
+                places[i][j] = 3;
 
-        i=npos-1;j=apos+1;
-        while(i>=0 && j<=7 && pieces[i][j]=='-')
-        {
-            places[i][j]=2;
-            i--;j++;
-        }
-        if(i>=0 && j<=7 && pieces[i][j]>'A' && pieces[i][j]<'Z')
-            places[i][j]=3;
+            i = npos - 1;
+            j = apos + 1;
+            while (i >= 0 && j <= 7 && pieces[i][j] == '-') {
+                places[i][j] = 2;
+                i--;
+                j++;
+            }
+            if (i >= 0 && j <= 7 && pieces[i][j] > 'A' && pieces[i][j] < 'Z')
+                places[i][j] = 3;
 
-        i=npos+1;j=apos-1;
-        while(i<=7 && j>=0 && pieces[i][j]=='-')
-        {
-            places[i][j]=2;
-            i++;j--;
-        }
-        if(i<=7 && j>=0 && pieces[i][j]>'A' && pieces[i][j]<'Z')
-            places[i][j]=3;
+            i = npos + 1;
+            j = apos - 1;
+            while (i <= 7 && j >= 0 && pieces[i][j] == '-') {
+                places[i][j] = 2;
+                i++;
+                j--;
+            }
+            if (i <= 7 && j >= 0 && pieces[i][j] > 'A' && pieces[i][j] < 'Z')
+                places[i][j] = 3;
 
-        i=npos-1;j=apos-1;
-        while(i>=0 && j>=0 && pieces[i][j]=='-')
-        {
-            places[i][j]=2;
-            i--;j--;
+            i = npos - 1;
+            j = apos - 1;
+            while (i >= 0 && j >= 0 && pieces[i][j] == '-') {
+                places[i][j] = 2;
+                i--;
+                j--;
+            }
+            if (i >= 0 && j >= 0 && pieces[i][j] > 'A' && pieces[i][j] < 'Z')
+                places[i][j] = 3;
         }
-        if(i>=0 && j>=0 && pieces[i][j]>'A' && pieces[i][j]<'Z')
-            places[i][j]=3;
-
     }
 
     //Black Bishop
-    public void bbishop(int npos,int apos, int[][] places)
+    public void bbishop(int npos,int apos, int[][] places, char[][] pieces)
     {
-        int i,j;
-        i=npos+1;j=apos+1;
-        while(i<=7 && j<=7 && pieces[i][j]=='-')
+        if(!black_check)
         {
-            places[i][j]=2;
-            i++;j++;
-        }
-        if(i<=7 && j<=7 && pieces[i][j]>'a' && pieces[i][j]<'z')
-            places[i][j]=3;
+            int i, j;
+            i = npos + 1;
+            j = apos + 1;
+            while (i <= 7 && j <= 7 && pieces[i][j] == '-') {
+                places[i][j] = 2;
+                i++;
+                j++;
+            }
+            if (i <= 7 && j <= 7 && pieces[i][j] > 'a' && pieces[i][j] < 'z')
+                places[i][j] = 3;
 
-        i=npos-1;j=apos+1;
-        while(i>=0 && j<=7 && pieces[i][j]=='-')
-        {
-            places[i][j]=2;
-            i--;j++;
-        }
-        if(i>=0 && j<=7 && pieces[i][j]>'a' && pieces[i][j]<'z')
-            places[i][j]=3;
+            i = npos - 1;
+            j = apos + 1;
+            while (i >= 0 && j <= 7 && pieces[i][j] == '-') {
+                places[i][j] = 2;
+                i--;
+                j++;
+            }
+            if (i >= 0 && j <= 7 && pieces[i][j] > 'a' && pieces[i][j] < 'z')
+                places[i][j] = 3;
 
-        i=npos+1;j=apos-1;
-        while(i<=7 && j>=0 && pieces[i][j]=='-')
-        {
-            places[i][j]=2;
-            i++;j--;
-        }
-        if(i<=7 && j>=0 && pieces[i][j]>'a' && pieces[i][j]<'z')
-            places[i][j]=3;
+            i = npos + 1;
+            j = apos - 1;
+            while (i <= 7 && j >= 0 && pieces[i][j] == '-') {
+                places[i][j] = 2;
+                i++;
+                j--;
+            }
+            if (i <= 7 && j >= 0 && pieces[i][j] > 'a' && pieces[i][j] < 'z')
+                places[i][j] = 3;
 
-        i=npos-1;j=apos-1;
-        while(i>=0 && j>=0 && pieces[i][j]=='-')
-        {
-            places[i][j]=2;
-            i--;j--;
+            i = npos - 1;
+            j = apos - 1;
+            while (i >= 0 && j >= 0 && pieces[i][j] == '-') {
+                places[i][j] = 2;
+                i--;
+                j--;
+            }
+            if (i >= 0 && j >= 0 && pieces[i][j] > 'a' && pieces[i][j] < 'z')
+                places[i][j] = 3;
         }
-        if(i>=0 && j>=0 && pieces[i][j]>'a' && pieces[i][j]<'z')
-            places[i][j]=3;
-
     }
 
 
     //Queen
     //White Queen
-    public void wqueen(int npos, int apos, int[][] places)
+    public void wqueen(int npos, int apos, int[][] places, char[][] pieces)
     {
-        wrook(npos,apos,places);
-        wbishop(npos,apos,places);
+        if(!white_check)
+        {
+            wrook(npos, apos, places, pieces);
+            wbishop(npos, apos, places, pieces);
+        }
     }
     //Black Queen
-    public void bqueen(int npos, int apos, int[][] places)
+    public void bqueen(int npos, int apos, int[][] places, char[][] pieces)
     {
-        brook(npos,apos,places);
-        bbishop(npos,apos,places);
+        if(!black_check)
+        {
+            brook(npos, apos, places,pieces);
+            bbishop(npos, apos, places, pieces);
+        }
     }
 
 
@@ -819,364 +838,306 @@ public class MainActivity extends AppCompatActivity {
     //TODO: Checkmate
     //TODO: Draw
     //White King
-    public void wking(int npos, int apos, int[][] places)
+    public void wking(int npos, int apos, int[][] places, char[][] pieces)
     {
-
-
-        if(npos<=6 && (pieces[npos+1][apos]=='-' || pieces[npos+1][apos]>'A' && pieces[npos+1][apos]<'Z') && white_check_places[npos+1][apos]==0) {
+        if (npos <= 6 && (pieces[npos + 1][apos] == '-' || pieces[npos + 1][apos] > 'A' && pieces[npos + 1][apos] < 'Z') && white_check_places[npos + 1][apos] == 0) {
             places[npos + 1][apos] = 2;
             if (pieces[npos + 1][apos] > 'A' && pieces[npos + 1][apos] < 'Z')
                 places[npos + 1][apos] = 3;
         }
-        if(npos>=1 && (pieces[npos-1][apos]=='-' || pieces[npos-1][apos]>'A' && pieces[npos-1][apos]<'Z') && white_check_places[npos-1][apos]==0) {
+        if (npos >= 1 && (pieces[npos - 1][apos] == '-' || pieces[npos - 1][apos] > 'A' && pieces[npos - 1][apos] < 'Z') && white_check_places[npos - 1][apos] == 0) {
             places[npos - 1][apos] = 2;
             if (pieces[npos - 1][apos] > 'A' && pieces[npos - 1][apos] < 'Z')
                 places[npos - 1][apos] = 3;
         }
-        if(apos<=6 && (pieces[npos][apos+1]=='-' || pieces[npos][apos+1]>'A' && pieces[npos][apos+1]<'Z') && white_check_places[npos][apos+1]==0) {
+        if (apos <= 6 && (pieces[npos][apos + 1] == '-' || pieces[npos][apos + 1] > 'A' && pieces[npos][apos + 1] < 'Z') && white_check_places[npos][apos + 1] == 0) {
             places[npos][apos + 1] = 2;
             if (pieces[npos][apos + 1] > 'A' && pieces[npos][apos + 1] < 'Z')
                 places[npos][apos + 1] = 3;
         }
-        if(apos>=1 && (pieces[npos][apos-1]=='-' || pieces[npos][apos-1]>'A' && pieces[npos][apos-1]<'Z') && white_check_places[npos][apos-1]==0) {
+        if (apos >= 1 && (pieces[npos][apos - 1] == '-' || pieces[npos][apos - 1] > 'A' && pieces[npos][apos - 1] < 'Z') && white_check_places[npos][apos - 1] == 0) {
             places[npos][apos - 1] = 2;
             if (pieces[npos][apos - 1] > 'A' && pieces[npos][apos - 1] < 'Z')
                 places[npos][apos - 1] = 3;
         }
-        if(npos<=6 && apos<=6 && (pieces[npos+1][apos+1]=='-' || pieces[npos+1][apos+1]>'A' && pieces[npos+1][apos+1]<'Z') && white_check_places[npos+1][apos+1]==0) {
+        if (npos <= 6 && apos <= 6 && (pieces[npos + 1][apos + 1] == '-' || pieces[npos + 1][apos + 1] > 'A' && pieces[npos + 1][apos + 1] < 'Z') && white_check_places[npos + 1][apos + 1] == 0) {
             places[npos + 1][apos + 1] = 2;
             if (pieces[npos + 1][apos + 1] > 'A' && pieces[npos + 1][apos + 1] < 'Z')
                 places[npos + 1][apos + 1] = 3;
         }
-        if(npos<=6 && apos>=1 && (pieces[npos+1][apos-1]=='-' || pieces[npos+1][apos-1]>'A' && pieces[npos+1][apos-1]<'Z') && white_check_places[npos+1][apos-1]==0) {
+        if (npos <= 6 && apos >= 1 && (pieces[npos + 1][apos - 1] == '-' || pieces[npos + 1][apos - 1] > 'A' && pieces[npos + 1][apos - 1] < 'Z') && white_check_places[npos + 1][apos - 1] == 0) {
             places[npos + 1][apos - 1] = 2;
             if (pieces[npos + 1][apos - 1] > 'A' && pieces[npos + 1][apos - 1] < 'Z')
                 places[npos + 1][apos - 1] = 3;
         }
-        if(npos>=1 && apos<=6 && (pieces[npos-1][apos+1]=='-' || pieces[npos-1][apos+1]>'A' && pieces[npos-1][apos+1]<'Z') && white_check_places[npos-1][apos+1]==0) {
+        if (npos >= 1 && apos <= 6 && (pieces[npos - 1][apos + 1] == '-' || pieces[npos - 1][apos + 1] > 'A' && pieces[npos - 1][apos + 1] < 'Z') && white_check_places[npos - 1][apos + 1] == 0) {
             places[npos - 1][apos + 1] = 2;
             if (pieces[npos - 1][apos + 1] > 'A' && pieces[npos - 1][apos + 1] < 'Z')
                 places[npos - 1][apos + 1] = 3;
         }
-        if(npos>=1 && apos>=1 && (pieces[npos-1][apos-1]=='-' || pieces[npos-1][apos-1]>'A' && pieces[npos-1][apos-1]<'Z') && white_check_places[npos-1][apos-1]==0) {
+        if (npos >= 1 && apos >= 1 && (pieces[npos - 1][apos - 1] == '-' || pieces[npos - 1][apos - 1] > 'A' && pieces[npos - 1][apos - 1] < 'Z') && white_check_places[npos - 1][apos - 1] == 0) {
             places[npos - 1][apos - 1] = 2;
             if (pieces[npos - 1][apos - 1] > 'A' && pieces[npos - 1][apos - 1] < 'Z')
                 places[npos - 1][apos - 1] = 3;
         }
 
         //Castling
-        if(npos==0 && apos==4 && pieces[0][5]=='-' && pieces[0][6]=='-' && pieces[0][0]=='r' && !white_king_moved && !white_rook2_moved && white_check_places[0][4]==0&& white_check_places[0][5]==0 && white_check_places[0][6]==0)
-            places[0][6]=5;
-        if(npos==0 && apos==4 && pieces[0][3]=='-' && pieces[0][2]=='-' && pieces[0][1]=='-' && pieces[0][0]=='r' && !white_king_moved && !white_rook1_moved && white_check_places[0][4]==0&& white_check_places[0][3]==0 && white_check_places[0][2]==0 && white_check_places[0][1]==0)
-            places[0][2]=5;
-
-        draw_board();
+        if (npos == 0 && apos == 4 && pieces[0][5] == '-' && pieces[0][6] == '-' && pieces[0][0] == 'r' && !white_king_moved && !white_rook2_moved && white_check_places[0][4] == 0 && white_check_places[0][5] == 0 && white_check_places[0][6] == 0)
+            places[0][6] = 5;
+        if (npos == 0 && apos == 4 && pieces[0][3] == '-' && pieces[0][2] == '-' && pieces[0][1] == '-' && pieces[0][0] == 'r' && !white_king_moved && !white_rook1_moved && white_check_places[0][4] == 0 && white_check_places[0][3] == 0 && white_check_places[0][2] == 0 && white_check_places[0][1] == 0)
+            places[0][2] = 5;
     }
 
     //Black King
-    public void bking(int npos, int apos, int[][] places)
+    public void bking(int npos, int apos, int[][] places, char[][] pieces)
     {
-
-
-        if(npos<=6 && (pieces[npos+1][apos]=='-' || pieces[npos+1][apos]>'a' && pieces[npos+1][apos]<'z') && black_check_places[npos+1][apos]==0) {
+        if (npos <= 6 && (pieces[npos + 1][apos] == '-' || pieces[npos + 1][apos] > 'a' && pieces[npos + 1][apos] < 'z') && black_check_places[npos + 1][apos] == 0) {
             places[npos + 1][apos] = 2;
             if (pieces[npos + 1][apos] > 'a' && pieces[npos + 1][apos] < 'z')
                 places[npos + 1][apos] = 3;
         }
-        if(npos>=1 && (pieces[npos-1][apos]=='-' || pieces[npos-1][apos]>'a' && pieces[npos-1][apos]<'z') && black_check_places[npos-1][apos]==0) {
+        if (npos >= 1 && (pieces[npos - 1][apos] == '-' || pieces[npos - 1][apos] > 'a' && pieces[npos - 1][apos] < 'z') && black_check_places[npos - 1][apos] == 0) {
             places[npos - 1][apos] = 2;
             if (pieces[npos - 1][apos] > 'a' && pieces[npos - 1][apos] < 'z')
                 places[npos - 1][apos] = 3;
         }
-        if(apos<=6 && (pieces[npos][apos+1]=='-' || pieces[npos][apos+1]>'a' && pieces[npos][apos+1]<'z') && black_check_places[npos][apos+1]==0) {
+        if (apos <= 6 && (pieces[npos][apos + 1] == '-' || pieces[npos][apos + 1] > 'a' && pieces[npos][apos + 1] < 'z') && black_check_places[npos][apos + 1] == 0) {
             places[npos][apos + 1] = 2;
             if (pieces[npos][apos + 1] > 'a' && pieces[npos][apos + 1] < 'z')
                 places[npos][apos + 1] = 3;
         }
-        if(apos>=1 && (pieces[npos][apos-1]=='-' || pieces[npos][apos-1]>'a' && pieces[npos][apos-1]<'z') && black_check_places[npos][apos-1]==0) {
+        if (apos >= 1 && (pieces[npos][apos - 1] == '-' || pieces[npos][apos - 1] > 'a' && pieces[npos][apos - 1] < 'z') && black_check_places[npos][apos - 1] == 0) {
             places[npos][apos - 1] = 2;
             if (pieces[npos][apos - 1] > 'a' && pieces[npos][apos - 1] < 'z')
                 places[npos][apos - 1] = 3;
         }
-        if(npos<=6 && apos<=6 && (pieces[npos+1][apos+1]=='-' || pieces[npos+1][apos+1]>'a' && pieces[npos+1][apos+1]<'z') && black_check_places[npos+1][apos+1]==0) {
+        if (npos <= 6 && apos <= 6 && (pieces[npos + 1][apos + 1] == '-' || pieces[npos + 1][apos + 1] > 'a' && pieces[npos + 1][apos + 1] < 'z') && black_check_places[npos + 1][apos + 1] == 0) {
             places[npos + 1][apos + 1] = 2;
             if (pieces[npos + 1][apos + 1] > 'a' && pieces[npos + 1][apos + 1] < 'z')
                 places[npos + 1][apos + 1] = 3;
         }
-        if(npos<=6 && apos>=1 && (pieces[npos+1][apos-1]=='-' || pieces[npos+1][apos-1]>'a' && pieces[npos+1][apos-1]<'z') && black_check_places[npos+1][apos-1]==0) {
+        if (npos <= 6 && apos >= 1 && (pieces[npos + 1][apos - 1] == '-' || pieces[npos + 1][apos - 1] > 'a' && pieces[npos + 1][apos - 1] < 'z') && black_check_places[npos + 1][apos - 1] == 0) {
             places[npos + 1][apos - 1] = 2;
             if (pieces[npos + 1][apos - 1] > 'a' && pieces[npos + 1][apos - 1] < 'z')
                 places[npos + 1][apos - 1] = 3;
         }
-        if(npos>=1 && apos<=6 && (pieces[npos-1][apos+1]=='-' || pieces[npos-1][apos+1]>'a' && pieces[npos-1][apos+1]<'z') && black_check_places[npos-1][apos+1]==0) {
+        if (npos >= 1 && apos <= 6 && (pieces[npos - 1][apos + 1] == '-' || pieces[npos - 1][apos + 1] > 'a' && pieces[npos - 1][apos + 1] < 'z') && black_check_places[npos - 1][apos + 1] == 0) {
             places[npos - 1][apos + 1] = 2;
             if (pieces[npos - 1][apos + 1] > 'a' && pieces[npos - 1][apos + 1] < 'z')
                 places[npos - 1][apos + 1] = 3;
         }
-        if(npos>=1 && apos>=1 && (pieces[npos-1][apos-1]=='-' || pieces[npos-1][apos-1]>'a' && pieces[npos-1][apos-1]<'z') && black_check_places[npos-1][apos-1]==0) {
+        if (npos >= 1 && apos >= 1 && (pieces[npos - 1][apos - 1] == '-' || pieces[npos - 1][apos - 1] > 'a' && pieces[npos - 1][apos - 1] < 'z') && black_check_places[npos - 1][apos - 1] == 0) {
             places[npos - 1][apos - 1] = 2;
             if (pieces[npos - 1][apos - 1] > 'a' && pieces[npos - 1][apos - 1] < 'z')
                 places[npos - 1][apos - 1] = 3;
         }
 
         //Castling
-        if(npos==7 && apos==4 && pieces[7][5]=='-' && pieces[7][6]=='-' && pieces[7][7]=='R' && !black_king_moved && !black_rook2_moved && black_check_places[7][4]==0 && black_check_places[7][5]==0 && black_check_places[7][6]==0)
-            places[7][6]=5;
-        if(npos==7 && apos==4 && pieces[7][3]=='-' && pieces[7][2]=='-' && pieces[7][1]=='-' && pieces[7][0]=='R' && !black_king_moved && !black_rook1_moved && black_check_places[7][4]==0 && black_check_places[7][3]==0 && black_check_places[7][2]==0 && black_check_places[7][1]==0)
-            places[7][2]=5;
-
-        draw_board();
+        if (npos == 7 && apos == 4 && pieces[7][5] == '-' && pieces[7][6] == '-' && pieces[7][7] == 'R' && !black_king_moved && !black_rook2_moved && black_check_places[7][4] == 0 && black_check_places[7][5] == 0 && black_check_places[7][6] == 0)
+            places[7][6] = 5;
+        if (npos == 7 && apos == 4 && pieces[7][3] == '-' && pieces[7][2] == '-' && pieces[7][1] == '-' && pieces[7][0] == 'R' && !black_king_moved && !black_rook1_moved && black_check_places[7][4] == 0 && black_check_places[7][3] == 0 && black_check_places[7][2] == 0 && black_check_places[7][1] == 0)
+            places[7][2] = 5;
     }
 
 
     //Pawn
     //White Pawn
-    public void wpawn(int npos, int apos, int[][] places)
+    public void wpawn(int npos, int apos, int[][] places, char[][] pieces)
     {
-        //Normal Move
-        if(pieces[npos+1][apos]=='-')
-            places[npos+1][apos]=2;
-        
-        //If starting position
-        if(npos==1 && pieces[npos+2][apos]=='-')
-            places[npos+2][apos]=2;
+        if(!white_check)
+        {
+            //Normal Move
+            if (pieces[npos + 1][apos] == '-')
+                places[npos + 1][apos] = 2;
 
-        //Capturing
-        {
-            //If something is in diagonal
-            if (apos >= 1 && apos <= 6) {
-                if (pieces[npos + 1][apos + 1] >= 'A' && pieces[npos + 1][apos + 1] <= 'Z')
-                    places[npos + 1][apos + 1] = 3;
-                if (pieces[npos + 1][apos - 1] >= 'A' && pieces[npos + 1][apos - 1] <= 'Z')
-                    places[npos + 1][apos - 1] = 3;
-            }
-            //If on the edge
-            else if (apos == 0) {
-                if (pieces[npos + 1][apos + 1] >= 'A' && pieces[npos + 1][apos + 1] <= 'Z')
-                    places[npos + 1][apos + 1] = 3;
-            }
-            else if (apos == 7) {
-                if (pieces[npos + 1][apos - 1] >= 'A' && pieces[npos + 1][apos - 1] <= 'Z')
-                    places[npos + 1][apos - 1] = 3;
-            }
-        }
-        
-        //Promotion
-        if(npos==6)
-        {
-            if(pieces[npos+1][apos]=='-')
-                places[npos+1][apos]=4;
-            if(apos>=1 && apos<=6) {
-                if (pieces[npos + 1][apos + 1] >= 'A' && pieces[npos + 1][apos + 1] <= 'Z')
-                    places[npos + 1][apos + 1] = 4;
-                if (pieces[npos + 1][apos - 1] >= 'A' && pieces[npos + 1][apos - 1] <= 'Z')
-                    places[npos + 1][apos - 1] = 4;
-            }
-            else if (apos==0) {
-                if (pieces[npos + 1][apos + 1] >= 'A' && pieces[npos + 1][apos + 1] <= 'Z')
-                    places[npos + 1][apos + 1] = 4;
-            }
-            else if (apos==7) {
-                if (pieces[npos + 1][apos - 1] >= 'A' && pieces[npos + 1][apos - 1] <= 'Z')
-                    places[npos + 1][apos - 1] = 4;
-            }
-        }
+            //If starting position
+            if (npos == 1 && pieces[npos + 2][apos] == '-')
+                places[npos + 2][apos] = 2;
 
-        //En passant
-        if(npos==4)
-        {
-            switch (apos)
+            //Capturing
             {
-                case 0:
-                    if(pieces[npos][apos+1]=='P' && pieces[npos+1][apos+1]=='-' && black_pawn2_move_no==move_no && black_pawn2_moved_two)
-                        places[npos + 1][apos + 1] = 6;
-                    break;
-                case 1:
-                    if(pieces[npos][apos+1]=='P' && pieces[npos+1][apos+1]=='-' && black_pawn3_move_no==move_no && black_pawn3_moved_two)
-                        places[npos + 1][apos + 1] = 6;
-                    if(pieces[npos][apos-1]=='P' && pieces[npos+1][apos-1]=='-' && black_pawn1_move_no==move_no && black_pawn1_moved_two)
-                        places[npos + 1][apos - 1] = 6;
-                    break;
-                case 2:
-                    if(pieces[npos][apos+1]=='P' && pieces[npos+1][apos+1]=='-' && black_pawn4_move_no==move_no && black_pawn4_moved_two)
-                        places[npos + 1][apos + 1] = 6;
-                    if(pieces[npos][apos-1]=='P' && pieces[npos+1][apos-1]=='-' && black_pawn2_move_no==move_no && black_pawn2_moved_two)
-                        places[npos + 1][apos - 1] = 6;
-                    break;
-                case 3:
-                    if(pieces[npos][apos+1]=='P' && pieces[npos+1][apos+1]=='-' && black_pawn5_move_no==move_no && black_pawn5_moved_two)
-                        places[npos + 1][apos + 1] = 6;
-                    if(pieces[npos][apos-1]=='P' && pieces[npos+1][apos-1]=='-' && black_pawn3_move_no==move_no && black_pawn3_moved_two)
-                        places[npos + 1][apos - 1] = 6;
-                    break;
-                case 4:
-                    if(pieces[npos][apos+1]=='P' && pieces[npos+1][apos+1]=='-' && black_pawn6_move_no==move_no && black_pawn6_moved_two)
-                        places[npos + 1][apos + 1] = 6;
-                    if(pieces[npos][apos-1]=='P' && pieces[npos+1][apos-1]=='-' && black_pawn4_move_no==move_no && black_pawn4_moved_two)
-                        places[npos + 1][apos - 1] = 6;
-                    break;
-                case 5:
-                    if(pieces[npos][apos+1]=='P' && pieces[npos+1][apos+1]=='-' && black_pawn7_move_no==move_no && black_pawn7_moved_two)
-                        places[npos + 1][apos + 1] = 6;
-                    if(pieces[npos][apos-1]=='P' && pieces[npos+1][apos-1]=='-' && black_pawn5_move_no==move_no && black_pawn5_moved_two)
-                        places[npos + 1][apos - 1] = 6;
-                    break;
-                case 6:
-                    if(pieces[npos][apos+1]=='P' && pieces[npos+1][apos+1]=='-' && black_pawn8_move_no==move_no && black_pawn8_moved_two)
-                        places[npos + 1][apos + 1] = 6;
-                    if(pieces[npos][apos-1]=='P' && pieces[npos+1][apos-1]=='-' && black_pawn6_move_no==move_no && black_pawn6_moved_two)
-                        places[npos + 1][apos - 1] = 6;
-                    break;
-                case 7:
-                    if(pieces[npos][apos-1]=='P' && pieces[npos+1][apos-1]=='-' && black_pawn7_move_no==move_no && black_pawn7_moved_two)
-                        places[npos + 1][apos - 1] = 6;
-                    break;
+                //If something is in diagonal
+                if (apos >= 1 && apos <= 6) {
+                    if (pieces[npos + 1][apos + 1] >= 'A' && pieces[npos + 1][apos + 1] <= 'Z')
+                        places[npos + 1][apos + 1] = 3;
+                    if (pieces[npos + 1][apos - 1] >= 'A' && pieces[npos + 1][apos - 1] <= 'Z')
+                        places[npos + 1][apos - 1] = 3;
+                }
+                //If on the edge
+                else if (apos == 0) {
+                    if (pieces[npos + 1][apos + 1] >= 'A' && pieces[npos + 1][apos + 1] <= 'Z')
+                        places[npos + 1][apos + 1] = 3;
+                } else if (apos == 7) {
+                    if (pieces[npos + 1][apos - 1] >= 'A' && pieces[npos + 1][apos - 1] <= 'Z')
+                        places[npos + 1][apos - 1] = 3;
+                }
+            }
+
+            //Promotion
+            if (npos == 6) {
+                if (pieces[npos + 1][apos] == '-')
+                    places[npos + 1][apos] = 4;
+                if (apos >= 1 && apos <= 6) {
+                    if (pieces[npos + 1][apos + 1] >= 'A' && pieces[npos + 1][apos + 1] <= 'Z')
+                        places[npos + 1][apos + 1] = 4;
+                    if (pieces[npos + 1][apos - 1] >= 'A' && pieces[npos + 1][apos - 1] <= 'Z')
+                        places[npos + 1][apos - 1] = 4;
+                } else if (apos == 0) {
+                    if (pieces[npos + 1][apos + 1] >= 'A' && pieces[npos + 1][apos + 1] <= 'Z')
+                        places[npos + 1][apos + 1] = 4;
+                } else if (apos == 7) {
+                    if (pieces[npos + 1][apos - 1] >= 'A' && pieces[npos + 1][apos - 1] <= 'Z')
+                        places[npos + 1][apos - 1] = 4;
+                }
+            }
+
+            //En passant
+            if (npos == 4) {
+                switch (apos) {
+                    case 0:
+                        if (pieces[npos][apos + 1] == 'P' && pieces[npos + 1][apos + 1] == '-' && black_pawn2_move_no == move_no && black_pawn2_moved_two)
+                            places[npos + 1][apos + 1] = 6;
+                        break;
+                    case 1:
+                        if (pieces[npos][apos + 1] == 'P' && pieces[npos + 1][apos + 1] == '-' && black_pawn3_move_no == move_no && black_pawn3_moved_two)
+                            places[npos + 1][apos + 1] = 6;
+                        if (pieces[npos][apos - 1] == 'P' && pieces[npos + 1][apos - 1] == '-' && black_pawn1_move_no == move_no && black_pawn1_moved_two)
+                            places[npos + 1][apos - 1] = 6;
+                        break;
+                    case 2:
+                        if (pieces[npos][apos + 1] == 'P' && pieces[npos + 1][apos + 1] == '-' && black_pawn4_move_no == move_no && black_pawn4_moved_two)
+                            places[npos + 1][apos + 1] = 6;
+                        if (pieces[npos][apos - 1] == 'P' && pieces[npos + 1][apos - 1] == '-' && black_pawn2_move_no == move_no && black_pawn2_moved_two)
+                            places[npos + 1][apos - 1] = 6;
+                        break;
+                    case 3:
+                        if (pieces[npos][apos + 1] == 'P' && pieces[npos + 1][apos + 1] == '-' && black_pawn5_move_no == move_no && black_pawn5_moved_two)
+                            places[npos + 1][apos + 1] = 6;
+                        if (pieces[npos][apos - 1] == 'P' && pieces[npos + 1][apos - 1] == '-' && black_pawn3_move_no == move_no && black_pawn3_moved_two)
+                            places[npos + 1][apos - 1] = 6;
+                        break;
+                    case 4:
+                        if (pieces[npos][apos + 1] == 'P' && pieces[npos + 1][apos + 1] == '-' && black_pawn6_move_no == move_no && black_pawn6_moved_two)
+                            places[npos + 1][apos + 1] = 6;
+                        if (pieces[npos][apos - 1] == 'P' && pieces[npos + 1][apos - 1] == '-' && black_pawn4_move_no == move_no && black_pawn4_moved_two)
+                            places[npos + 1][apos - 1] = 6;
+                        break;
+                    case 5:
+                        if (pieces[npos][apos + 1] == 'P' && pieces[npos + 1][apos + 1] == '-' && black_pawn7_move_no == move_no && black_pawn7_moved_two)
+                            places[npos + 1][apos + 1] = 6;
+                        if (pieces[npos][apos - 1] == 'P' && pieces[npos + 1][apos - 1] == '-' && black_pawn5_move_no == move_no && black_pawn5_moved_two)
+                            places[npos + 1][apos - 1] = 6;
+                        break;
+                    case 6:
+                        if (pieces[npos][apos + 1] == 'P' && pieces[npos + 1][apos + 1] == '-' && black_pawn8_move_no == move_no && black_pawn8_moved_two)
+                            places[npos + 1][apos + 1] = 6;
+                        if (pieces[npos][apos - 1] == 'P' && pieces[npos + 1][apos - 1] == '-' && black_pawn6_move_no == move_no && black_pawn6_moved_two)
+                            places[npos + 1][apos - 1] = 6;
+                        break;
+                    case 7:
+                        if (pieces[npos][apos - 1] == 'P' && pieces[npos + 1][apos - 1] == '-' && black_pawn7_move_no == move_no && black_pawn7_moved_two)
+                            places[npos + 1][apos - 1] = 6;
+                        break;
+                }
             }
         }
-        draw_board();
     }
 
     //Black Pawn
-    public void bpawn(int npos, int apos, int[][] places)
+    public void bpawn(int npos, int apos, int[][] places, char[][] pieces)
     {
-        //Normal Move
-        if(pieces[npos-1][apos]=='-')
-            places[npos-1][apos]=2;
-        
-        //If starting position
-        if(npos==6 && pieces[npos-2][apos]=='-')
-            places[npos-2][apos]=2;
-
-        //If something is in diagonal
-        if(apos>=1 && apos<=6) {
-            if (pieces[npos - 1][apos + 1] >= 'a' && pieces[npos - 1][apos + 1] <= 'z')
-                places[npos - 1][apos + 1] = 3;
-            if (pieces[npos - 1][apos - 1] >= 'a' && pieces[npos - 1][apos - 1] <= 'z')
-                places[npos - 1][apos - 1] = 3;
-        }
-        //If on the edge
-        else if (apos==0) {
-            if (pieces[npos - 1][apos + 1] >= 'a' && pieces[npos - 1][apos + 1] <= 'z')
-                places[npos - 1][apos + 1] = 3;
-        }
-        else if (apos==7) {
-            if (pieces[npos - 1][apos - 1] >= 'a' && pieces[npos - 1][apos - 1] <= 'z')
-                places[npos - 1][apos - 1] = 3;
-        }
-
-        //Promotion
-        if(npos==1)
+        if(!black_check)
         {
-            if(pieces[npos-1][apos]=='-')
-                places[npos-1][apos]=4;
-            if(apos>=1 && apos<=6) {
+            //Normal Move
+            if (pieces[npos - 1][apos] == '-')
+                places[npos - 1][apos] = 2;
+
+            //If starting position
+            if (npos == 6 && pieces[npos - 2][apos] == '-')
+                places[npos - 2][apos] = 2;
+
+            //If something is in diagonal
+            if (apos >= 1 && apos <= 6) {
                 if (pieces[npos - 1][apos + 1] >= 'a' && pieces[npos - 1][apos + 1] <= 'z')
-                    places[npos - 1][apos + 1] = 4;
+                    places[npos - 1][apos + 1] = 3;
                 if (pieces[npos - 1][apos - 1] >= 'a' && pieces[npos - 1][apos - 1] <= 'z')
-                    places[npos - 1][apos - 1] = 4;
+                    places[npos - 1][apos - 1] = 3;
             }
-            else if (apos==0) {
+            //If on the edge
+            else if (apos == 0) {
                 if (pieces[npos - 1][apos + 1] >= 'a' && pieces[npos - 1][apos + 1] <= 'z')
-                    places[npos - 1][apos + 1] = 4;
-            }
-            else if (apos==7) {
+                    places[npos - 1][apos + 1] = 3;
+            } else if (apos == 7) {
                 if (pieces[npos - 1][apos - 1] >= 'a' && pieces[npos - 1][apos - 1] <= 'z')
-                    places[npos - 1][apos - 1] = 4;
-            }
-        }
-
-        //En Passant
-        if(npos==3)
-        {
-            switch (apos)
-            {
-                case 0:
-                    if(pieces[npos][apos+1]=='p' && pieces[npos-1][apos+1]=='-' && white_pawn2_move_no==move_no && white_pawn2_moved_two)
-                        places[npos - 1][apos + 1] = 6;
-                    break;
-                case 1:
-                    if(pieces[npos][apos-1]=='p' && pieces[npos-1][apos-1]=='-' && white_pawn1_move_no==move_no && white_pawn1_moved_two)
-                        places[npos - 1][apos - 1] = 6;
-                    if(pieces[npos][apos+1]=='p' && pieces[npos-1][apos+1]=='-' && white_pawn3_move_no==move_no && white_pawn3_moved_two)
-                        places[npos - 1][apos + 1] = 6;
-                    break;
-                case 2:
-                    if(pieces[npos][apos-1]=='p' && pieces[npos-1][apos-1]=='-' && white_pawn2_move_no==move_no && white_pawn2_moved_two)
-                        places[npos - 1][apos - 1] = 6;
-                    if(pieces[npos][apos+1]=='p' && pieces[npos-1][apos+1]=='-' && white_pawn4_move_no==move_no && white_pawn4_moved_two)
-                        places[npos - 1][apos + 1] = 6;
-                    break;
-                case 3:
-                    if(pieces[npos][apos-1]=='p' && pieces[npos-1][apos-1]=='-' && white_pawn3_move_no==move_no && white_pawn3_moved_two)
-                        places[npos - 1][apos - 1] = 6;
-                    if(pieces[npos][apos+1]=='p' && pieces[npos-1][apos+1]=='-' && white_pawn5_move_no==move_no && white_pawn5_moved_two)
-                        places[npos - 1][apos + 1] = 6;
-                    break;
-                case 4:
-                    if(pieces[npos][apos-1]=='p' && pieces[npos-1][apos-1]=='-' && white_pawn4_move_no==move_no && white_pawn4_moved_two)
-                        places[npos - 1][apos - 1] = 6;
-                    if(pieces[npos][apos+1]=='p' && pieces[npos-1][apos+1]=='-' && white_pawn6_move_no==move_no && white_pawn6_moved_two)
-                        places[npos - 1][apos + 1] = 6;
-                    break;
-                case 5:
-                    if(pieces[npos][apos-1]=='p' && pieces[npos-1][apos-1]=='-' && white_pawn5_move_no==move_no && white_pawn5_moved_two)
-                        places[npos - 1][apos - 1] = 6;
-                    if(pieces[npos][apos+1]=='p' && pieces[npos-1][apos+1]=='-' && white_pawn7_move_no==move_no && white_pawn7_moved_two)
-                        places[npos - 1][apos + 1] = 6;
-                    break;
-                case 6:
-                    if(pieces[npos][apos-1]=='p' && pieces[npos-1][apos-1]=='-' && white_pawn6_move_no==move_no && white_pawn6_moved_two)
-                        places[npos - 1][apos - 1] = 6;
-                    if(pieces[npos][apos+1]=='p' && pieces[npos-1][apos+1]=='-' && white_pawn8_move_no==move_no && white_pawn8_moved_two)
-                        places[npos - 1][apos + 1] = 6;
-                    break;
-                case 7:
-                    if(pieces[npos][apos-1]=='p' && pieces[npos-1][apos-1]=='-' && white_pawn7_move_no==move_no && white_pawn7_moved_two)
-                        places[npos - 1][apos - 1] = 6;
-                    break;
-            }
-        }
-
-        draw_board();
-    }
-
-    @SuppressLint("SetTextI18n")
-    public void checkAttacked()
-    {
-        //Resetting the check places
-        for (int i = 0; i < 8; i++)
-            for (int j = 0; j < 8; j++) {
-                white_check_places[i][j] = 0;
-                black_check_places[i][j] = 0;
+                    places[npos - 1][apos - 1] = 3;
             }
 
-        //Checking for all pieces
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (pieces[i][j] == 'P')
-                    bpawn(i, j, white_check_places);
-                else if (pieces[i][j] == 'Q')
-                    bqueen(i, j, white_check_places);
-                else if (pieces[i][j] == 'R')
-                    brook(i, j, white_check_places);
-                else if (pieces[i][j] == 'B')
-                    bbishop(i, j, white_check_places);
-                else if (pieces[i][j] == 'N')
-                    bknight(i, j, white_check_places);
-                else if (pieces[i][j] == 'K')
-                    bking(i, j, white_check_places);
-                else if (pieces[i][j] == 'p')
-                    wpawn(i, j, black_check_places);
-                else if (pieces[i][j] == 'q')
-                    wqueen(i, j, black_check_places);
-                else if (pieces[i][j] == 'r')
-                    wrook(i, j, black_check_places);
-                else if (pieces[i][j] == 'b')
-                    wbishop(i, j, black_check_places);
-                else if (pieces[i][j] == 'n')
-                    wknight(i, j, black_check_places);
-                else if (pieces[i][j] == 'k')
-                    wking(i, j, black_check_places);
+            //Promotion
+            if (npos == 1) {
+                if (pieces[npos - 1][apos] == '-')
+                    places[npos - 1][apos] = 4;
+                if (apos >= 1 && apos <= 6) {
+                    if (pieces[npos - 1][apos + 1] >= 'a' && pieces[npos - 1][apos + 1] <= 'z')
+                        places[npos - 1][apos + 1] = 4;
+                    if (pieces[npos - 1][apos - 1] >= 'a' && pieces[npos - 1][apos - 1] <= 'z')
+                        places[npos - 1][apos - 1] = 4;
+                } else if (apos == 0) {
+                    if (pieces[npos - 1][apos + 1] >= 'a' && pieces[npos - 1][apos + 1] <= 'z')
+                        places[npos - 1][apos + 1] = 4;
+                } else if (apos == 7) {
+                    if (pieces[npos - 1][apos - 1] >= 'a' && pieces[npos - 1][apos - 1] <= 'z')
+                        places[npos - 1][apos - 1] = 4;
+                }
+            }
+
+            //En Passant
+            if (npos == 3) {
+                switch (apos) {
+                    case 0:
+                        if (pieces[npos][apos + 1] == 'p' && pieces[npos - 1][apos + 1] == '-' && white_pawn2_move_no == move_no && white_pawn2_moved_two)
+                            places[npos - 1][apos + 1] = 6;
+                        break;
+                    case 1:
+                        if (pieces[npos][apos - 1] == 'p' && pieces[npos - 1][apos - 1] == '-' && white_pawn1_move_no == move_no && white_pawn1_moved_two)
+                            places[npos - 1][apos - 1] = 6;
+                        if (pieces[npos][apos + 1] == 'p' && pieces[npos - 1][apos + 1] == '-' && white_pawn3_move_no == move_no && white_pawn3_moved_two)
+                            places[npos - 1][apos + 1] = 6;
+                        break;
+                    case 2:
+                        if (pieces[npos][apos - 1] == 'p' && pieces[npos - 1][apos - 1] == '-' && white_pawn2_move_no == move_no && white_pawn2_moved_two)
+                            places[npos - 1][apos - 1] = 6;
+                        if (pieces[npos][apos + 1] == 'p' && pieces[npos - 1][apos + 1] == '-' && white_pawn4_move_no == move_no && white_pawn4_moved_two)
+                            places[npos - 1][apos + 1] = 6;
+                        break;
+                    case 3:
+                        if (pieces[npos][apos - 1] == 'p' && pieces[npos - 1][apos - 1] == '-' && white_pawn3_move_no == move_no && white_pawn3_moved_two)
+                            places[npos - 1][apos - 1] = 6;
+                        if (pieces[npos][apos + 1] == 'p' && pieces[npos - 1][apos + 1] == '-' && white_pawn5_move_no == move_no && white_pawn5_moved_two)
+                            places[npos - 1][apos + 1] = 6;
+                        break;
+                    case 4:
+                        if (pieces[npos][apos - 1] == 'p' && pieces[npos - 1][apos - 1] == '-' && white_pawn4_move_no == move_no && white_pawn4_moved_two)
+                            places[npos - 1][apos - 1] = 6;
+                        if (pieces[npos][apos + 1] == 'p' && pieces[npos - 1][apos + 1] == '-' && white_pawn6_move_no == move_no && white_pawn6_moved_two)
+                            places[npos - 1][apos + 1] = 6;
+                        break;
+                    case 5:
+                        if (pieces[npos][apos - 1] == 'p' && pieces[npos - 1][apos - 1] == '-' && white_pawn5_move_no == move_no && white_pawn5_moved_two)
+                            places[npos - 1][apos - 1] = 6;
+                        if (pieces[npos][apos + 1] == 'p' && pieces[npos - 1][apos + 1] == '-' && white_pawn7_move_no == move_no && white_pawn7_moved_two)
+                            places[npos - 1][apos + 1] = 6;
+                        break;
+                    case 6:
+                        if (pieces[npos][apos - 1] == 'p' && pieces[npos - 1][apos - 1] == '-' && white_pawn6_move_no == move_no && white_pawn6_moved_two)
+                            places[npos - 1][apos - 1] = 6;
+                        if (pieces[npos][apos + 1] == 'p' && pieces[npos - 1][apos + 1] == '-' && white_pawn8_move_no == move_no && white_pawn8_moved_two)
+                            places[npos - 1][apos + 1] = 6;
+                        break;
+                    case 7:
+                        if (pieces[npos][apos - 1] == 'p' && pieces[npos - 1][apos - 1] == '-' && white_pawn7_move_no == move_no && white_pawn7_moved_two)
+                            places[npos - 1][apos - 1] = 6;
+                        break;
+                }
             }
         }
     }
@@ -1591,7 +1552,7 @@ public class MainActivity extends AppCompatActivity {
         max_move_no=0;
 
 
-        //Resetting castling
+        //Castling Variables Reset
         white_king_moved=false;
         white_king_move_no=-1;
         black_king_moved=false;
@@ -1605,6 +1566,53 @@ public class MainActivity extends AppCompatActivity {
         black_rook2_moved=false;
         black_rook2_move_no=-1;
 
+        //En Passant Variables Reset
+        black_pawn1_moved_two=false;
+        black_pawn1_move_no=-1;
+        black_pawn2_moved_two=false;
+        black_pawn2_move_no=-1;
+        black_pawn3_moved_two=false;
+        black_pawn3_move_no=-1;
+        black_pawn4_moved_two=false;
+        black_pawn4_move_no=-1;
+        black_pawn5_moved_two=false;
+        black_pawn5_move_no=-1;
+        black_pawn6_moved_two=false;
+        black_pawn6_move_no=-1;
+        black_pawn7_moved_two=false;
+        black_pawn7_move_no=-1;
+        black_pawn8_moved_two=false;
+        black_pawn8_move_no=-1;
+
+        white_pawn1_moved_two=false;
+        white_pawn1_move_no=-1;
+        white_pawn2_moved_two=false;
+        white_pawn2_move_no=-1;
+        white_pawn3_moved_two=false;
+        white_pawn3_move_no=-1;
+        white_pawn4_moved_two=false;
+        white_pawn4_move_no=-1;
+        white_pawn5_moved_two=false;
+        white_pawn5_move_no=-1;
+        white_pawn6_moved_two=false;
+        white_pawn6_move_no=-1;
+        white_pawn7_moved_two=false;
+        white_pawn7_move_no=-1;
+        white_pawn8_moved_two=false;
+        white_pawn8_move_no=-1;
+
+        //Check Variables Reset
+        white_check=false;
+        black_check=false;
+        for(int i=0;i<8;i++)
+        {
+            for(int j=0;j<8;j++)
+            {
+                black_check_places[i][j]=0;
+                white_check_places[i][j]=0;
+                temp_pieces[i][j]=pieces[i][j];
+            }
+        }
         //Drawing the board
         draw_board();
     }
@@ -1686,5 +1694,18 @@ public class MainActivity extends AppCompatActivity {
         white_pawn7_move_no=-1;
         white_pawn8_moved_two=false;
         white_pawn8_move_no=-1;
+
+        //Check Variables Reset
+        white_check=false;
+        black_check=false;
+        for(int i=0;i<8;i++)
+        {
+            for(int j=0;j<8;j++)
+            {
+                black_check_places[i][j]=0;
+                white_check_places[i][j]=0;
+                temp_pieces[i][j]=pieces[i][j];
+            }
+        }
     }
 }
