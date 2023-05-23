@@ -314,12 +314,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }
-
-                //Finally
-                show_piece.setImageResource(R.drawable.blank);
-                draw_board();
-                piece_selected = false;
-                selected_piece='-';
             }
 
             //En Passant Move
